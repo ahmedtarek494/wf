@@ -1,0 +1,15 @@
+com\wf\controllers\dto\UserDto.class
+com\wf\bussines\services\UserServiceImpl.class
+com\wf\utilities\SpringContext.class
+com\wf\Daos\UserDao.class
+com\wf\HelloAppEngine.class
+com\wf\controllers\dto\AbstractDTO.class
+com\wf\entities\Center.class
+com\wf\controllers\dto\CenterDto.class
+com\wf\Daos\UserDaoimpl.class
+com\wf\bussines\services\UserService.class
+com\wf\entities\User.class
+com\wf\bussines\services\ServicesManager.class
+com\wf\Daos\AbstractDao.class
+com\jsf\bootstrap\StudentBean.class
+com\wf\Application.class

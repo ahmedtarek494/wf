@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: wf
+Implementation-Version: 0.1.0-SNAPSHOT
+Built-By: ahmed.t.abouelsouod
+Implementation-Vendor-Id: com.wf
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/wf
+Created-By: Maven Integration for Eclipse
+
