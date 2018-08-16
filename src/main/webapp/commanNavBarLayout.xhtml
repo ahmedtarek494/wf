@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Dashboard Template for BootsFaces</title>
+        <meta name="author" content="Riccardo Massera"></meta>
+        
+    </h:head>
+    <h:body style="padding-top: 60px">
+        
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script-->
+        <b:navBar brand="Project name" brandHref="#" inverse="true" fixed="top" fluid="true">
+            
+            <b:navbarLinks pull="right">
+                <b:navLink value="Dashboard" href="#"></b:navLink>
+                <b:navLink value="Settings" href="#"></b:navLink>
+                <b:navLink value="Profile" href="#"></b:navLink>
+                <b:navLink value="Help" href="#"></b:navLink>
+            </b:navbarLinks>
+            <h:form styleClass="navbar-form navbar-right">
+                <div class="form-group">
+                    <b:inputText placeholder="Search..." fieldSize="sm"/>
+                </div>
+            </h:form>
+        </b:navBar>
+    </h:body>
+</html>

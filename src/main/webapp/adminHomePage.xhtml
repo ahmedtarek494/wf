@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Dashboard Template for BootsFaces</title>
+	<meta name="author" content="Riccardo Massera"></meta>
+
+</h:head>
+<h:body style="padding-top: 60px">
+
+	<!-- Comman navbar layout -->
+	<ui:insert>
+		<ui:include src="commanNavBarLayout.xhtml"></ui:include>
+	</ui:insert>
+	<b:container fluid="true">
+		<b:row>
+
+			<!-- admin sidebar layout -->
+			<ui:insert>
+				<ui:include src="adminSideBarLayout.xhtml"></ui:include>
+			</ui:insert>
+			
+			
+			<!-- content -->
+			<b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+			<h1>Dashboard</h1>
+            <hr/>
+			
+			<!-- two equal column -->
+<h:panelGroup id="panelgroupbody">
+<h:form>        
+
+	        <b:row styleClass="show-grid">
+                    <b:commandButton id="linkStudent" type="submit" look="primary" value="Student in class" style="width:50%"><f:ajax event="click"  listener="#{ajax.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /></b:commandButton>
+                    <b:commandButton id="linkGrade" type="submit" look="info" value="Grades of students" style="width:50%"><f:ajax  event="click"  listener="#{ajax.handleAjaxGrade}" execute="StudentForm GradeForm" render="panelgroupbody"  /></b:commandButton>
+            </b:row>
+        
+
+
+            <h:panelGroup  id="StudentForm" rendered="#{ajax.student and !ajax.grade}" >
+            
+            <b:row styleClass="table-responsive">
+                        <h:dataTable styleClass="table table-striped" value="#{loremIpsumBean.items}" var="item" rows="15">
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="#" /></f:facet>
+                                <h:outputText value="#{item.h1}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Student" /></f:facet>
+                                <h:outputText value="#{item.h2}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Name" /></f:facet>
+                                <h:outputText value="#{item.h3}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="ID" /></f:facet>
+                                <h:outputText value="#{item.h4}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Header" /></f:facet>
+                                <h:outputText value="#{item.h5}" />
+                            </h:column>
+                        </h:dataTable>
+                    </b:row>
+			
+			</h:panelGroup>
+			<h:panelGroup id="GradeForm" rendered="#{!ajax.student and ajax.grade}">
+            
+            <b:row styleClass="table-responsive">
+                        <h:dataTable styleClass="table table-striped" value="#{loremIpsumBean.items}" var="item" rows="15">
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="#" /></f:facet>
+                                <h:outputText value="#{item.h1}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Grades" /></f:facet>
+                                <h:outputText value="#{item.h2}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Name" /></f:facet>
+                                <h:outputText value="#{item.h3}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="ID" /></f:facet>
+                                <h:outputText value="#{item.h4}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Grade" /></f:facet>
+                                <h:outputText value="#{item.h5}" />
+                            </h:column>
+                        </h:dataTable>
+                    </b:row>
+			
+			</h:panelGroup>
+
+			</h:form>
+</h:panelGroup>			
+			
+	
+			
+			</b:column>
+		</b:row>
+	</b:container>
+	
+	
+	
+	<style>
+	                    .show-grid [class^="col-"] {
+                        background-color: rgba(86, 61, 124, 0.15);
+                        border: 1px solid rgba(86, 61, 124, 0.2);
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        //margin-bottom: 15px;
+                    }
+	</style>
+</h:body>
+</html>
