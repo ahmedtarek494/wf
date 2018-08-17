@@ -34,4 +34,9 @@
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
   
+  <mime-mapping>
+    <extension>xhtml</extension>
+    <mime-type>application/xml</mime-type>
+</mime-mapping>
+  
 </web-app>

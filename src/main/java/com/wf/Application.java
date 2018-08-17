@@ -38,7 +38,8 @@ import com.wf.utilities.SpringContext;
 
 
 @Configuration
-
+@EnableAutoConfiguration(exclude = {
+	    org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 @ComponentScan
 @EnableScheduling
 public class Application extends SpringBootServletInitializer implements Serializable {

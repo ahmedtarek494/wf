@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.wf.HelloAppEngineTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.137 s <<< FAILURE! - in com.wf.HelloAppEngineTest
-test(com.wf.HelloAppEngineTest)  Time elapsed: 0.013 s  <<< FAILURE!
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.078 s <<< FAILURE! - in com.wf.HelloAppEngineTest
+test(com.wf.HelloAppEngineTest)  Time elapsed: 0.015 s  <<< FAILURE!
 java.lang.AssertionError: expected:<text/plain> but was:<null>
 	at com.wf.HelloAppEngineTest.test(HelloAppEngineTest.java:14)
 
