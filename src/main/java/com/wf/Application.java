@@ -142,6 +142,7 @@ public class Application extends SpringBootServletInitializer implements Seriali
     }
     
     
+    
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(applicationClass);

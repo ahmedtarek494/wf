@@ -1,12 +1,18 @@
 package com.jsf.bootstrap;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class Ajax {
+public class Ajax  implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
 	public boolean isStudent() {

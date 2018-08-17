@@ -80,7 +80,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 			userdto.setIsstudent(user.getIsstudent());
 			
 			if(user.getIsstudent()==1)
-				return "logintest";
+				return "adminHomePage";
 				
 			else	if(user.getIsstudent()==0)
 				return "output";
