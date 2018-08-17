@@ -42,7 +42,31 @@ public class User implements Serializable {
 	@Column(name="isstudent")
 	private int isstudent;
 	
+	@Column(name="password")
+	private String password;
 	
+	@Column(name="username")
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "center", nullable = false)
 	private Center center;
@@ -113,7 +137,7 @@ public class User implements Serializable {
 		
 	}
 
-	public User(int id, String name, String mobilenumber, String gender, int isstudent, Center center) {
+	public User(int id, String name, String mobilenumber, String gender, int isstudent,String username,String password ,Center center) {
 	
 		this.id = id;
 		this.name = name;
@@ -121,6 +145,8 @@ public class User implements Serializable {
 		this.gender = gender;
 		this.isstudent = isstudent;
 		this.center = center;
+		this.username=username;
+		this.password=password;
 	}
 	
 }

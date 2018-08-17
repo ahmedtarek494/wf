@@ -8,15 +8,11 @@ import java.io.Serializable;
 
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wf.Daos.UserDao;
+import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.UserDto;
 import com.wf.entities.Center;
 import com.wf.entities.User;
@@ -54,6 +50,52 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 		u1.setMobilenumber(user.getMobilenumber());
 		System.out.println("before 1");
 		userDao.addUser(u1);
+		
+	}
+
+
+
+
+	@Override
+	public String loginService(String username,String password) throws Exception {
+		// TODO Auto-generated method stub
+		UserDto userdto= new UserDto(); 
+		userdto.setUsername(username);
+		
+		User user= userDao.findUserByUsernameAndPass(username,password);
+		
+		if(user==null)
+			throw new Exception("Incorrect Username or Password");
+		else
+		{
+			userdto.setId(user.getId());
+			userdto.setName(user.getName());
+			userdto.setGender(user.getGender());
+			userdto.setMobilenumber(user.getMobilenumber());
+			Center center=user.getCenter();
+			CenterDto centerdto=new CenterDto(center.getId(), center.getCentername());
+			
+			userdto.setCenter(centerdto);
+			
+			userdto.setIsstudent(user.getIsstudent());
+			
+			if(user.getIsstudent()==1)
+				return "logintest";
+				
+			else	if(user.getIsstudent()==0)
+				return "output";
+			
+			
+			
+			
+			
+			
+			
+		}
+		return null;
+			
+			
+		
 		
 	}
 		

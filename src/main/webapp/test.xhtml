@@ -4,6 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Sign In Template for BootsFaces</title>
@@ -21,8 +22,9 @@
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
                 <h2 class="form-signin-heading">Please sign in</h2>
-                <b:inputText id="user" placeholder="User name" value="#{user.userName}" required="true" requiredMessage="Enter your User Name" >
-                <h:message styleClass="error" for="user"></h:message>
+    
+                <b:inputText id="username" placeholder="User name" value="#{user.userName}" required="true" requiredMessage="Enter your User Name" >
+                <h:message styleClass="error" for="username"></h:message>
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
@@ -35,7 +37,7 @@
                     </f:facet>
                 </b:inputText>
                 
-                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="confirm"/>
+                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="#{user.login}"/>
             </h:form>
         </b:container>
     </h:body>

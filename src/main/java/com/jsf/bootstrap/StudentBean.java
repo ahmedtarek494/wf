@@ -82,6 +82,8 @@ public class StudentBean implements Serializable {
 
 	public String createStudentForm() throws Exception {
 		
+		
+		
 		 FacesContext context = FacesContext.getCurrentInstance();
              UserDto user =new UserDto();
              user.setName("ahmed");

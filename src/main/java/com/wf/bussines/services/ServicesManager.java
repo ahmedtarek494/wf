@@ -54,14 +54,14 @@ public abstract class ServicesManager implements Serializable {
 
 
 	
-
+/*
 	
 	protected User getUser(String username) throws Exception {
 		User user = userDao.findUserByUsername(username);
 	
 		return user;
 	}
-	
+	*/
 	
 	
 }

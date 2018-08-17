@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -57,12 +58,15 @@ public class UserDaoimpl extends AbstractDao implements UserDao,Serializable {
 	}
 
 	@Override
-	public User findUserByUsername(String username) {
+	public User findUserByUsernameAndPass(String username,String pass) {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		Criteria criteria = getSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("username", username));
+		criteria.add(Restrictions.eq("password", pass));
+		
+		return (User) criteria.uniqueResult();	}
 
-	
-
-	
+		
 }
+
+

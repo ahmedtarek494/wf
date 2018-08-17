@@ -5,7 +5,10 @@ import com.wf.entities.Center;
 public class UserDto  implements AbstractDTO{
 
 	
- private	int id;
+ private String username;	
+
+
+private	int id;
  
  private String name;
  
@@ -65,10 +68,18 @@ public void setCenter(CenterDto center) {
 	this.center = center;
 }
 
-public UserDto(int id, String name, String mobilenumber, String gender, int isstudent, CenterDto center) {
+public String getUsername() {
+	return username;
+}
+
+public void setUsername(String username) {
+	this.username = username;
+}
+public UserDto(int id, String name, String mobilenumber,String username, String gender, int isstudent, CenterDto center) {
 	super();
 	this.id = id;
 	this.name = name;
+	this.username=username;
 	this.mobilenumber = mobilenumber;
 	this.gender = gender;
 	this.isstudent = isstudent;

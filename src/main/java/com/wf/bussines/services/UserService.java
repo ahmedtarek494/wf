@@ -21,4 +21,7 @@ public interface UserService {
 
 	public void createUser( UserDto user) throws Exception;
 	
+	
+	public String loginService( String username,String Password) throws Exception;
+	
 }
