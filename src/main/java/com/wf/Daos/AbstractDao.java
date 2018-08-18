@@ -24,10 +24,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 
-public abstract class AbstractDao < T extends Serializable >{
+public abstract class AbstractDao implements Serializable{
  
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected final Logger logDao = LoggerFactory.getLogger(AbstractDao.class);
-	private Class< T > DAOClass;
 	
     @Autowired
     private SessionFactory sessionFactory;
@@ -36,7 +40,7 @@ public abstract class AbstractDao < T extends Serializable >{
         return sessionFactory.getCurrentSession();
     }
  
-    public final void setDAOClass( Class< T > DAOClass ){
+/*    public final void setDAOClass( Class< T > DAOClass ){
         this.DAOClass = DAOClass;
      }
     
@@ -45,25 +49,25 @@ public abstract class AbstractDao < T extends Serializable >{
 		return DAOClass;
 	}
 
-	/**
+	*//**
      * Don't Use Before Setting <br>
      * DAOClass value on child class <br>
      * Like <br>
      * this.setDAOClass(MyDAOClass.class);
-     */
+     *//*
     public T findOne(int id ){
         return (T) getSession().get(DAOClass, id );
      }
-    /**
+    *//**
      * Don't Use Before Setting <br>
      * DAOClass value on child class <br>
      * Like <br>
      * this.setDAOClass(MyDAOClass.class);
-     */
+     *//*
      public List< T > findAll(){
         return getSession().createQuery( "from " + DAOClass.getName() ).list();
      }
-     
+     */
      /**
       * Don't Use Before Setting <br>
       * DAOClass value on child class <br>
@@ -89,47 +93,47 @@ public abstract class AbstractDao < T extends Serializable >{
     	getSession().clear();
     }
     
-    /**
+ /*   *//**
      * Don't Use Before Setting <br>
      * DAOClass value on child class <br>
      * Like <br>
      * this.setDAOClass(MyDAOClass.class);
-     */
+     *//*
      public void create( T entity ){
         getSession().persist( entity );
      }
    
-     /**
+     *//**
       * Don't Use Before Setting <br>
       * DAOClass value on child class <br>
       * Like <br>
       * this.setDAOClass(MyDAOClass.class);
-      */
+      *//*
      public void update( T entity ){
     	 getSession().merge( entity );
      }
    
-     /**
+     *//**
       * Don't Use Before Setting <br>
       * DAOClass value on child class <br>
       * Like <br>
       * this.setDAOClass(MyDAOClass.class);
-      */
+      *//*
      public void delete( T entity ){
     	 getSession().delete( entity );
      }
      
-     /**
+     *//**
       * Don't Use Before Setting <br>
       * DAOClass value on child class <br>
       * Like <br>
       * this.setDAOClass(MyDAOClass.class);
-      */
+      *//*
      public void deleteById( int entityId ) {
         T entity = findOne( entityId );
         delete( entity );
      }
-     
+     */
      
      
  	public List<Object> findList(String hql, Map<String, Object> params) {

@@ -1,6 +1,8 @@
 package com.wf.bussines.services;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -97,6 +99,45 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 			
 		
 		
+	}
+
+
+
+
+	@Override
+	public ArrayList<UserDto> getUsersByCenter(int CenterID) throws Exception {
+		// TODO Auto-generated method stub
+		ArrayList<UserDto> userlist=new ArrayList<UserDto>();
+		
+		Center center1=new Center();
+		center1.setId(CenterID);
+		List<User> user=userDao.findAllByCenter(center1) ;
+		System.out.println("list size : "+user.size());
+		if(user==null)
+			throw new Exception("No Students Available");
+		else {
+			for (User u:user)
+			{
+				UserDto userdto= new UserDto(); 
+				userdto.setUsername(u.getUsername());
+				userdto.setId(u.getId());
+				userdto.setName(u.getName());
+				userdto.setGender(u.getGender());
+				userdto.setMobilenumber(u.getMobilenumber());
+				Center center=u.getCenter();
+				CenterDto centerdto=new CenterDto(center.getId(), center.getCentername());
+				
+				userdto.setCenter(centerdto);
+				
+				userdto.setIsstudent(u.getIsstudent());
+				
+				userlist.add(userdto);
+				
+			}
+			
+			return userlist;
+			
+		}
 	}
 		
 

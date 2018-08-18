@@ -1,11 +1,23 @@
 package com.wf.controllers.dto;
 
-import com.wf.entities.Center;
+import java.io.Serializable;
 
-public class UserDto  implements AbstractDTO{
+public class UserDto implements Serializable  {
 
 	
- private String username;	
+ /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+/**
+	 * 
+	 */
+
+
+
+private String username;	
 
 
 private	int id;

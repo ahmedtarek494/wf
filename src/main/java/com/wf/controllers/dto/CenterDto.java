@@ -1,7 +1,13 @@
 package com.wf.controllers.dto;
 
-public class CenterDto implements AbstractDTO{
+import java.io.Serializable;
+
+public class CenterDto implements Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 
 	public int getId() {

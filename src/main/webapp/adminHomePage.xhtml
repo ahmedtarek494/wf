@@ -6,7 +6,7 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Dashboard Template for BootsFaces</title>
+	<title>Admin HomePage</title>
 	<meta name="author" content="Riccardo Massera"></meta>
 
 </h:head>
@@ -37,44 +37,41 @@
 
 	        <b:row styleClass="show-grid">
                     <h:commandButton id="linkStudent" type="submit" look="primary" value="Student in class" style="width:50%">
-                  <f:ajax event="click"  listener="#{ajax.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /> 
+                  <f:ajax event="click"  listener="#{adminHomePageView.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /> 
                     </h:commandButton>
                     <h:commandButton id="linkGrade" type="submit" look="info" value="Grades of students" style="width:50%">
-                 <f:ajax  event="click"  listener="#{ajax.handleAjaxGrade}" execute="StudentForm GradeForm" render="panelgroupbody"  /> 
+                 <f:ajax  event="click"  listener="#{adminHomePageView.handleAjaxGrade}" execute="StudentForm GradeForm" render="panelgroupbody"  /> 
                     </h:commandButton>
             </b:row>
         
+           
 
-
-            <h:panelGroup  id="StudentForm" rendered="#{ajax.student and !ajax.grade}" >
+            <h:panelGroup  id="StudentForm" rendered="#{adminHomePageView.student and !adminHomePageView.grade}" >
             
             <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{loremIpsumBean.items}" var="item" rows="15">
+                        <h:dataTable styleClass="table table-striped" value="#{adminHomePageView.userslistdto}" var="item" rows="15">
                             <h:column>
-                                <f:facet name="header"><h:outputText value="#" /></f:facet>
-                                <h:outputText value="#{item.h1}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"><h:outputText value="Student" /></f:facet>
-                                <h:outputText value="#{item.h2}" />
+                                <f:facet name="header"><h:outputText value="ID" /></f:facet>
+                                <h:outputText value="#{item.id}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Name" /></f:facet>
-                                <h:outputText value="#{item.h3}" />
+                                <h:outputText value="#{item.name}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><h:outputText value="ID" /></f:facet>
-                                <h:outputText value="#{item.h4}" />
+                                <f:facet name="header"><h:outputText value="Center" /></f:facet>
+                                <h:outputText value="#{item.center.centername}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><h:outputText value="Header" /></f:facet>
-                                <h:outputText value="#{item.h5}" />
+                                <f:facet name="header"><h:outputText value="Mobile" /></f:facet>
+                                <h:outputText value="#{item.mobilenumber}" />
                             </h:column>
+                           
                         </h:dataTable>
                     </b:row>
 			
 			</h:panelGroup>
-			<h:panelGroup id="GradeForm" rendered="#{!ajax.student and ajax.grade}">
+			<h:panelGroup id="GradeForm" rendered="#{!adminHomePageView.student and adminHomePageView.grade}">
             
             <b:row styleClass="table-responsive">
                         <h:dataTable styleClass="table table-striped" value="#{loremIpsumBean.items}" var="item" rows="15">
