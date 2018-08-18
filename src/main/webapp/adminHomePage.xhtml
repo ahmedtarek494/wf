@@ -35,11 +35,11 @@
 <h:form>        
 <h:panelGroup id="panelgroupbody">
 
-	        <b:row styleClass="show-grid">
-                    <h:commandButton id="linkStudent" type="submit" look="primary" value="Student in class" style="width:50%">
+	        <b:row styleClass="show-grid" style="display: inline;">
+                    <h:commandButton styleClass="btn btn-primary" id="linkStudent" type="submit" value="Student in class" style="width:50%">
                   <f:ajax event="click"  listener="#{ajax.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /> 
                     </h:commandButton>
-                    <h:commandButton id="linkGrade" type="submit" look="info" value="Grades of students" style="width:50%">
+                    <h:commandButton styleClass="btn btn-info" id="linkGrade" type="submit" value="Grades of students" style="width:50%">
                  <f:ajax  event="click"  listener="#{ajax.handleAjaxGrade}" execute="StudentForm GradeForm" render="panelgroupbody"  /> 
                     </h:commandButton>
             </b:row>
