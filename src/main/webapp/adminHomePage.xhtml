@@ -9,30 +9,6 @@
 	<title>Admin HomePage</title>
 	<meta name="author" content="Riccardo Massera"></meta>
 
-
-<script type="text/javascript">
-
-function showDataContaner(data){
-			console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + JSON.stringify(data));
-			var ajaxloader = document.getElementById("ajaxloader");
-		
-			
-			if (data.status == 'begin'){
-			
-				console.log('begin');
-				ajaxloader.style.display= 'inline-block';
-				
-		
-			}else if (data.status == 'complete'){
-				ajaxloader.style.display = 'none';
-				console.log('complete');
-			
-			} else{
-				console.log("else data.status : " + data.status );
-			}
-		}
-
-</script>
 </h:head>
 <h:body style="padding-top: 60px">
 
@@ -63,7 +39,7 @@ function showDataContaner(data){
                  
 	        <b:row styleClass="show-grid" style="display: inline;">
                     <h:commandButton styleClass="btn btn-primary" id="linkStudent" type="submit" value="Student in class" style="width:50%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /> 
+                  <f:ajax event="click"  listener="#{adminHomePageView.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /> 
                     </h:commandButton>
                     <h:commandButton styleClass="btn btn-info" id="linkGrade" type="submit" value="Grades of students" style="width:50%">
                  <f:ajax  event="click"  listener="#{adminHomePageView.handleAjaxGrade}" execute="StudentForm GradeForm" render="panelgroupbody"  /> 
@@ -71,18 +47,10 @@ function showDataContaner(data){
                     </h:commandButton>
             </b:row>
         
-           <img id="ajaxloader"  src="131.gif" style="display: none;"/>
+           
 
             <h:panelGroup  id="StudentForm" rendered="#{adminHomePageView.student and !adminHomePageView.grade}" >
             
-             <b:dropButton value="Dropup" drop="up">
-      <b:navLink value="Action" href="#"></b:navLink>
-      <b:navLink value="Another action" href="#"></b:navLink>
-  <b:navLink value="Something else here" href="#"></b:navLink>
-    <b:navLink></b:navLink>
-  
-</b:dropButton>
-                        
             <b:row styleClass="table-responsive">
                         <h:dataTable styleClass="table table-striped" value="#{adminHomePageView.userslistdto}" var="item" rows="15">
                             <h:column>
