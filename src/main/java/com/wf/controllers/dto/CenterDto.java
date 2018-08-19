@@ -32,5 +32,9 @@ public class CenterDto implements Serializable  {
 		this.centername = centername;
 	}
 
+	public CenterDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private String centername;
 }
