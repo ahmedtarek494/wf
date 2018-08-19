@@ -52,8 +52,25 @@ public class AdminHomePageView  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
+	private boolean selectOneMenu=false;
+	private String selectOneMenuValue="";
 	private ArrayList<UserDto> userslist;
 	
+	
+	
+
+	public String getSelectOneMenuValue() {
+		return selectOneMenuValue;
+	}
+	public void setSelectOneMenuValue(String selectOneMenuValue) {
+		this.selectOneMenuValue = selectOneMenuValue;
+	}
+	public boolean isSelectOneMenu() {
+		return selectOneMenu;
+	}
+	public void setSelectOneMenu(boolean selectOneMenu) {
+		this.selectOneMenu = selectOneMenu;
+	}
 	public ArrayList<UserDto> getUserslist() {
 		return userslist;
 	}
@@ -81,9 +98,8 @@ public class AdminHomePageView  implements Serializable{
 		System.out.println("handle ajax student");
 			student=true;
 		 grade=false;
-		 FacesContext context = FacesContext.getCurrentInstance();
 	      try {
-	       System.out.println("beforeeeeee");
+	       System.out.println("before 1");
 	             
 	     this.userslistdto= userservice.getUsersByCenter(CenterNameEnum.BASMALA_OCTOBER);
 			System.out.println("after");
@@ -107,4 +123,10 @@ public class AdminHomePageView  implements Serializable{
 		student=false;
 		System.out.println("handle ajax grade");
 	}
+	
+	public void handleAjaxSelectCenterMenu()
+	{
+		selectOneMenu=true;
+	}
+	
 }

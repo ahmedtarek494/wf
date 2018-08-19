@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Admin HomePage</title>
@@ -39,13 +40,24 @@
                  
 	        <b:row styleClass="show-grid" style="display: inline;">
                     <h:commandButton styleClass="btn btn-primary" id="linkStudent" type="submit" value="Student in class" style="width:50%">
-                  <f:ajax event="click"  listener="#{adminHomePageView.handleAjaxStudent}"  execute="StudentForm GradeForm" render="panelgroupbody" /> 
+                  <f:ajax event="click"  listener="#{adminHomePageView.handleAjaxSelectCenterMenu}"  execute="panelgroupbody" render="panelgroupbody" /> 
                     </h:commandButton>
                     <h:commandButton styleClass="btn btn-info" id="linkGrade" type="submit" value="Grades of students" style="width:50%">
                  <f:ajax  event="click"  listener="#{adminHomePageView.handleAjaxGrade}" execute="StudentForm GradeForm" render="panelgroupbody"  /> 
-
                     </h:commandButton>
             </b:row>
+        
+        <b:selectOneMenu  id="selectOneMenu" value="#{adminHomePageView.selectOneMenu}" rendered="#{adminHomePageView.selectOneMenu}">
+			<f:selectItem itemLabel="All" itemValue="All" />
+			<f:selectItem itemLabel="Basmala october" itemValue="BASMALA_OCTOBER" />
+			<f:selectItem itemLabel="Basmala Dokki" itemValue="BASMALA_DOKKI" />
+			<f:selectItem itemLabel="College" itemValue="COLLEGE" />
+			<f:selectItem itemLabel="MBC" itemValue="MBC" />
+			<f:selectItem itemLabel="Basmala Haram" itemValue="BASMALA_HARAM" />
+			
+						<p:ajax event="change"  listener="#{adminHomePageView.handleAjaxStudent}" /> 
+						
+		</b:selectOneMenu>
         
            
 
@@ -72,7 +84,6 @@
                            
                         </h:dataTable>
                     </b:row>
-			
 			</h:panelGroup>
 			<h:panelGroup id="GradeForm" rendered="#{!adminHomePageView.student and adminHomePageView.grade}">
             
@@ -104,7 +115,8 @@
 			</h:panelGroup>
 </h:panelGroup>			
 
-			</h:form>
+
+ 			</h:form>
 			
 	
 			
