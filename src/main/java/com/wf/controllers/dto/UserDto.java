@@ -19,6 +19,16 @@ public class UserDto implements Serializable  {
 
 private String username;	
 
+private String password;
+
+
+public String getPassword() {
+	return password;
+}
+
+public void setPassword(String password) {
+	this.password = password;
+}
 
 private	int id;
  
@@ -87,7 +97,7 @@ public String getUsername() {
 public void setUsername(String username) {
 	this.username = username;
 }
-public UserDto(int id, String name, String mobilenumber,String username, String gender, int isstudent, CenterDto center) {
+public UserDto(int id, String name, String mobilenumber,String username,String password, String gender, int isstudent, CenterDto center) {
 	super();
 	this.id = id;
 	this.name = name;
@@ -96,6 +106,8 @@ public UserDto(int id, String name, String mobilenumber,String username, String 
 	this.gender = gender;
 	this.isstudent = isstudent;
 	this.center = center;
+	this.password=password;
+	
 }
 
 public UserDto() {

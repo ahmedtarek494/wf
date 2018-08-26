@@ -134,6 +134,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 			{
 				UserDto userdto= new UserDto(); 
 				userdto.setUsername(u.getUsername());
+				userdto.setPassword(u.getPassword());
 				userdto.setId(u.getId());
 				userdto.setName(u.getName());
 				userdto.setGender(u.getGender());
