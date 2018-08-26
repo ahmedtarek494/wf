@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.wf.bussines.services.CenterService;
 import com.wf.bussines.services.UserService;
+import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.UserDto;
 import com.wf.enums.CenterNameEnum;
 
@@ -39,7 +41,13 @@ public class AdminHomePageView  implements Serializable{
 	 */
 	
 	 private ArrayList<UserDto> userslistdto;
-	
+	 private ArrayList<CenterDto> centerlistdto;
+	public ArrayList<CenterDto> getCenterlistdto() {
+		return centerlistdto;
+	}
+	public void setCenterlistdto(ArrayList<CenterDto> centerlistdto) {
+		this.centerlistdto = centerlistdto;
+	}
 	public ArrayList<UserDto> getUserslistdto() {
 		return userslistdto;
 	}
@@ -47,13 +55,32 @@ public class AdminHomePageView  implements Serializable{
 		this.userslistdto = userslistdto;
 	}
 
+	
+	
 	@Autowired
 	UserService userservice;
+	@Autowired
+	CenterService centerservice;
 	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
 	private ArrayList<UserDto> userslist;
+	private boolean dropdownbool=false;
+	public boolean isDropdownbool() {
+		return dropdownbool;
+	}
+	public void setDropdownbool(boolean dropdownbool) {
+		this.dropdownbool = dropdownbool;
+	}
+
+	private String studentcentervalue;
 	
+	public String getStudentcentervalue() {
+		return studentcentervalue;
+	}
+	public void setStudentcentervalue(String studentcentervalue) {
+		this.studentcentervalue = studentcentervalue;
+	}
 	public ArrayList<UserDto> getUserslist() {
 		return userslist;
 	}
@@ -75,17 +102,19 @@ public class AdminHomePageView  implements Serializable{
 		this.grade = grade;
 	}
 	
-	public void handleAjaxStudent() {
+	public void handleAjaxStudent(int centerid) {
 	
 		
 		System.out.println("handle ajax student");
 			student=true;
 		 grade=false;
-		 FacesContext context = FacesContext.getCurrentInstance();
+		 
 	      try {
 	       System.out.println("beforeeeeee");
 	             
-	     this.userslistdto= userservice.getUsersByCenter(CenterNameEnum.BASMALA_OCTOBER);
+	     this.userslistdto= userservice.getUsersByCenter(centerid);
+	     
+	     this.studentcentervalue=userslistdto.get(0).getCenter().getCentername();
 			System.out.println("after");
 			
 	      }
@@ -106,5 +135,21 @@ public class AdminHomePageView  implements Serializable{
 		grade=true;
 		student=false;
 		System.out.println("handle ajax grade");
+	}
+	
+	public void handleAjaxDropDown() {
+		dropdownbool=true;
+		try
+		{
+			
+		
+		centerlistdto=centerservice.getAllCenters();
+		}
+		  catch(Exception e)
+	      {
+	    	  System.out.println("exp "+ e.getMessage());
+	    	  
+	      }
+		System.out.println("handle ajax dropdown");
 	}
 }
