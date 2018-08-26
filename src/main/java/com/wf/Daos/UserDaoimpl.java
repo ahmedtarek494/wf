@@ -22,17 +22,26 @@ public class UserDaoimpl extends AbstractDao implements UserDao,Serializable {
 
 	@Override
 	
-	public void addUser(User user) {
+	public int addUser(User user) {
 		// TODO Auto-generated method stub
 		System.out.println("before2");
 		getSession().save(user);
 		System.out.println("before3");
 		getSession().flush();
 		System.out.println("before4");
+		System.out.println("password : "+user.getId());
 		getSession().clear();
-		
+		return user.getId();
 	}
 
+	@Override
+	public void updateUserToSetPassword(User user) {
+		// TODO Auto-generated method stub
+		getSession().update(user);
+	}
+
+	
+	
 	@Override
 	public void editUser(User user, int userId) {
 		// TODO Auto-generated method stub
@@ -79,6 +88,7 @@ public class UserDaoimpl extends AbstractDao implements UserDao,Serializable {
 		
 		return criteria.list();
 	}
+
 
 		
 }

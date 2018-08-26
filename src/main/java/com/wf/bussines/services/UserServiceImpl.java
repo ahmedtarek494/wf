@@ -32,6 +32,8 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 	 */
 	
 	private static final long serialVersionUID = 1L;
+	
+	
 	@Autowired
 	private UserDao userDao;
 
@@ -39,20 +41,32 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 	
 	
 	@Override
-	public void createUser(UserDto user) throws Exception {
+	public int createUser(UserDto user) throws Exception {
 		// TODO Auto-generated method stub
 		User u1=new User();
+		int userid=0;
 		u1.setId(user.getId());
 		u1.setName(user.getName());
 		u1.setGender(user.getGender());
 		u1.setIsstudent(user.getIsstudent());
 		
-		Center c1=new Center(user.getCenter().getId(),user.getCenter().getCentername());
+		Center c1=new Center();
+		c1.setId(user.getCenter().getId());
 		u1.setCenter(c1);
 		u1.setMobilenumber(user.getMobilenumber());
+		//u1.setUsername(user.getName());
+		//u1.setPassword("wfmath"+userDao.addUser(u1));
 		System.out.println("before 1");
-		userDao.addUser(u1);
 		
+		userid=userDao.addUser(u1);
+		
+		u1.setUsername(String.valueOf(userid));
+		u1.setPassword("wfmath"+userid);
+		userDao.updateUserToSetPassword(u1);
+		
+		
+		
+		return userid;
 	}
 
 

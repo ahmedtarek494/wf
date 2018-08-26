@@ -11,7 +11,8 @@ import com.wf.entities.User;
 public interface UserDao {
 
 	@Bean
-	 public void addUser(User user);
+	 public int addUser(User user);
+	 public void updateUserToSetPassword(User user);
 	    
 	    public void editUser(User user, int userId);
 	 

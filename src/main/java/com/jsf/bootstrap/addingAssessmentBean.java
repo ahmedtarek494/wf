@@ -1,71 +1,63 @@
 package com.jsf.bootstrap;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import com.wf.bussines.services.UserService;
 
+import com.wf.bussines.services.AssessmentService;
+import com.wf.bussines.services.UserService;
+import com.wf.controllers.dto.AssessmentDto;
 
 @RequestScope
 @ManagedBean
-public class User {
-	private String userName;
-	
-	private String password;
-	
+public class addingAssessmentBean {
+
+
 	@Autowired
-	UserService userservice;
+	AssessmentService assessmentService;
 	
 	
-	  @PostConstruct
+	@PostConstruct
 	    private void init() {
 	    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	        ServletContext servletContext = (ServletContext) externalContext.getContext();
 		WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).
 	                                   getAutowireCapableBeanFactory().
 	                                   autowireBean(this);
-	    }
-	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	
-
-
-	public String login() throws Exception {
-		
-		
-		
-		 FacesContext context = FacesContext.getCurrentInstance();
-      try {
-       System.out.println("beforeeeeee");
-             
-		String nextPage= userservice.loginService(userName, password);
-		System.out.println("after");
-		return nextPage;
-      }
-      catch(Exception e)
-      {
-    	  
-    	  System.out.println("exp "+ e.getMessage());
-    	  return "test";
-      }
-		
-	//	return "output";
+	
+	private String assessmentName;
+	private float gradeFrom;
+	public String getAssessmentName() {
+		return assessmentName;
 	}
+	public void setAssessmentName(String assessmentName) {
+		this.assessmentName = assessmentName;
+	}
+	public float getGradeFrom() {
+		return gradeFrom;
+	}
+	public void setGradeFrom(float gradeFrom) {
+		this.gradeFrom = gradeFrom;
+	}
+	
+	public void addAssessment() throws Exception{
+		AssessmentDto assessmentDto=new AssessmentDto();
+		assessmentDto.setAssessmentNameDto(this.assessmentName);
+		assessmentDto.setGradeFromDto(this.gradeFrom);
+		
+		assessmentService.createAssessment(assessmentDto);
+	}
+	
+	
+	
 	
 	
 }
