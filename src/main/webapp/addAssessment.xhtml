@@ -10,6 +10,9 @@
 	<title>Admin HomePage</title>
 	<meta name="author" content="Riccardo Massera"></meta>
 
+<style>
+.error{color: 	red}
+</style>
 
 </h:head>
 <h:body style="padding-top: 60px">
@@ -35,10 +38,16 @@
 			
 			<!-- begin of form -->
 			<h:form id="myform">
-			  <b:inputText id="assessmentName" value="#{addingAssessmentBean.assessmentName}" placeholder="Assessment Name"  label="Assessment name" required="true" requiredMessage="Enter  User Name"/>
+						<b:alert severity="success"  value="#{addingAssessmentBean.checkAssessmentSuccessMessage}" rendered="#{addingAssessmentBean.checkAssessmentSuccess}"></b:alert>
+			<b:alert severity="danger"  value="#{addingAssessmentBean.checkAssessmentFailureMessage}" rendered="#{addingAssessmentBean.checkAssessmentFaliure}"></b:alert>
+			
+			<h:message for="assessmentName" styleClass="error"></h:message>
+			  <b:inputText id="assessmentName" value="#{addingAssessmentBean.assessmentName}" placeholder="Assessment Name"  label="Assessment name" required="true" requiredMessage="Enter  Assessment Name"/>
 			  
-			  
-			  <b:inputText id="gradeFrom" value="#{addingAssessmentBean.gradeFrom}" placeholder="Grade From"  label="Grade of the assessment" required="true" requiredMessage="Enter phone number" />
+			  <h:message for="gradeFrom" styleClass="error"></h:message>
+			  <b:inputText id="gradeFrom" value="#{addingAssessmentBean.gradeFrom}" placeholder="Grade From"  label="Grade of the assessment" required="true" requiredMessage="Enter Assessment Grade and must be number" >
+			  <f:convertNumber integerOnly="true" for="gradeFrom"></f:convertNumber>
+			  </b:inputText>
 			  
 			  <h:commandButton action="#{addingAssessmentBean.addAssessment}" styleClass="btn btn-danger" id="addStudent" type="submit" value="Create Assessment" style="width:100%">
 			  

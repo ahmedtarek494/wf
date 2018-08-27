@@ -30,6 +30,23 @@ public class User {
 	                                   autowireBean(this);
 	    }
 	
+	  
+	 private String faliureLoginExeption;
+	 private boolean checkFaliureLoginException;
+	 
+	  
+	public boolean isCheckFaliureLoginException() {
+		return checkFaliureLoginException;
+	}
+	public void setCheckFaliureLoginException(boolean checkFaliureLoginException) {
+		this.checkFaliureLoginException = checkFaliureLoginException;
+	}
+	public String getFaliureLoginExeption() {
+		return faliureLoginExeption;
+	}
+	public void setFaliureLoginExeption(String faliureLoginExeption) {
+		this.faliureLoginExeption = faliureLoginExeption;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -59,8 +76,9 @@ public class User {
       }
       catch(Exception e)
       {
-    	  
+    	checkFaliureLoginException=true;  
     	  System.out.println("exp "+ e.getMessage());
+    	  setFaliureLoginExeption(e.getMessage());
     	  return "test";
       }
 		

@@ -34,7 +34,41 @@ public class addingAssessmentBean {
 	
 	
 	private String assessmentName;
-	private float gradeFrom;
+	private float gradeFrom=0;
+	
+	private boolean checkAssessmentFaliure;
+	private String checkAssessmentFailureMessage;
+	
+	private boolean checkAssessmentSuccess;
+	private String checkAssessmentSuccessMessage;
+	
+	
+		
+	
+	public boolean isCheckAssessmentSuccess() {
+		return checkAssessmentSuccess;
+	}
+	public void setCheckAssessmentSuccess(boolean checkAssessmentSuccess) {
+		this.checkAssessmentSuccess = checkAssessmentSuccess;
+	}
+	public String getCheckAssessmentSuccessMessage() {
+		return checkAssessmentSuccessMessage;
+	}
+	public void setCheckAssessmentSuccessMessage(String checkAssessmentSuccessMessage) {
+		this.checkAssessmentSuccessMessage = checkAssessmentSuccessMessage;
+	}
+	public String getCheckAssessmentFailureMessage() {
+		return checkAssessmentFailureMessage;
+	}
+	public void setCheckAssessmentFailureMessage(String checkAssessmentFailureMessage) {
+		this.checkAssessmentFailureMessage = checkAssessmentFailureMessage;
+	}
+	public boolean isCheckAssessmentFaliure() {
+		return checkAssessmentFaliure;
+	}
+	public void setCheckAssessmentFaliure(boolean checkAssessmentFaliure) {
+		this.checkAssessmentFaliure = checkAssessmentFaliure;
+	}
 	public String getAssessmentName() {
 		return assessmentName;
 	}
@@ -52,8 +86,17 @@ public class addingAssessmentBean {
 		AssessmentDto assessmentDto=new AssessmentDto();
 		assessmentDto.setAssessmentNameDto(this.assessmentName);
 		assessmentDto.setGradeFromDto(this.gradeFrom);
-		
+	try {	
 		assessmentService.createAssessment(assessmentDto);
+		checkAssessmentSuccess=true;
+		setCheckAssessmentSuccessMessage("Well done! You successfully added assessment");
+	}
+	catch (Exception e) {
+		// TODO: handle exception
+		checkAssessmentFaliure=true;
+		setCheckAssessmentFailureMessage("Warning! Try again to add assessment");
+	}
+	
 	}
 	
 	

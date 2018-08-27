@@ -41,6 +41,7 @@ color: #ff0033;
 border: 1px solid #ff0033;
 }
 .error{color: 	red}
+.confirmationMessage{}
 </style>
 </h:head>
 <h:body style="padding-top: 60px">
@@ -66,6 +67,9 @@ border: 1px solid #ff0033;
 			
 			<!-- begin of form -->
 			<h:form id="myform">
+			              <b:alert severity="success"  value="#{addingStudentBean.successfulMessage}" rendered="#{addingStudentBean.checkValue}"></b:alert>
+              <b:alert severity="danger"  value="#{addingStudentBean.faliureMessage}" rendered="#{addingStudentBean.checkValueFailure}"></b:alert>
+			
 			<h:message styleClass="error" for="fullname"></h:message>
 			  <b:inputText id="fullname" placeholder="Full Name"  label="Student Full Name" value="#{addingStudentBean.fullName}" required="true" requiredMessage="Enter  User Name"/>
 			  
@@ -75,7 +79,8 @@ border: 1px solid #ff0033;
       			<f:selectItem itemLabel="Male" itemValue="Male"  />
       			<f:selectItem itemLabel="Female" itemValue="Female"  />
     		  </b:selectOneMenu>
-			  <b:inputText value="#{addingStudentBean.mobileNumber}" placeholder="Mobile number"  label="Student Mobile Number" required="true" requiredMessage="Enter phone number" />
+    		  <h:message styleClass="error" for="mobilephone"></h:message>
+			  <b:inputText id="mobilephone" value="#{addingStudentBean.mobileNumber}" placeholder="Mobile number"  label="Student Mobile Number" required="true" requiredMessage="Enter phone number" />
 			  <b:selectOneMenu value="#{addingStudentBean.center}" label="Select Center" required="true" requiredMessage="choose center">
       		
       			<f:selectItem itemLabel="Basmala October" itemValue="1"  />
@@ -89,8 +94,7 @@ border: 1px solid #ff0033;
 			  
 			  </h:commandButton>
 			  
-              <h:messages infoClass="info"/>
-			
+              			
 			
 			
 			</h:form>

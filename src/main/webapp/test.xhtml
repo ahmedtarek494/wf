@@ -21,6 +21,8 @@
     <h:body style="padding-top: 60px; background-color: #add;">
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
+            <b:alert severity="danger"  value="#{user.faliureLoginExeption}" rendered="#{user.checkFaliureLoginException}"></b:alert>
+            
                 <h2 class="form-signin-heading">Please sign in</h2>
     
                 <b:inputText id="username" placeholder="User name" value="#{user.userName}" required="true" requiredMessage="Enter your User Name" >
