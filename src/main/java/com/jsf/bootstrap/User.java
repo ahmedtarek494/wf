@@ -71,7 +71,9 @@ public class User {
        System.out.println("beforeeeeee");
              
 		String nextPage= userservice.loginService(userName, password);
+		context.getExternalContext().redirect(nextPage);
 		System.out.println("after");
+
 		return nextPage;
       }
       catch(Exception e)

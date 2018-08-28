@@ -83,7 +83,7 @@ public class UserDaoimpl extends AbstractDao implements UserDao,Serializable {
 		// TODO Auto-generated method stub
 		Criteria criteria = getSession().createCriteria(User.class);
 		criteria.add(Restrictions.eq("center", center));
-		criteria.add(Restrictions.eq("isstudent", 0));
+		criteria.add(Restrictions.eq("isstudent", 1));
 		
 		
 		return criteria.list();
