@@ -48,7 +48,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 		u1.setId(user.getId());
 		u1.setName(user.getName());
 		u1.setGender(user.getGender());
-		u1.setIsstudent(user.getIsstudent());
+		u1.setIsstudent(1);
 		
 		Center c1=new Center();
 		c1.setId(user.getCenter().getId());
@@ -95,11 +95,11 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 			
 			userdto.setIsstudent(user.getIsstudent());
 			
-			if(user.getIsstudent()==1)
-				return "adminHomePage";
+			if(user.getIsstudent()==0)
+				return "adminHomePage.xhtml";
 				
-			else	if(user.getIsstudent()==0)
-				return "output";
+			else	if(user.getIsstudent()==1)
+				return "test";
 			
 			
 			
