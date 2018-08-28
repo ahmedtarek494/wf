@@ -8,6 +8,6 @@ import com.wf.entities.User;
 public interface AssessmentDao {
 	
 	@Bean
-	 public void addAssessment(AssessmentLookup assessment);
+	 public int addAssessment(AssessmentLookup assessment);
 
 }

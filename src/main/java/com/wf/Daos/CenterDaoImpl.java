@@ -7,7 +7,6 @@ import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 import com.wf.entities.Center;
-import com.wf.entities.User;
 
 
 @Repository

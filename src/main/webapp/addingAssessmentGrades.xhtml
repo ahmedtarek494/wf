@@ -7,7 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Admin HomePage</title>
+	<title>Add Grades</title>
 	<meta name="author" content="Riccardo Massera"></meta>
 
 
@@ -67,23 +67,23 @@ function showDataContaner(data){
                  
 	              <b:row styleClass="show-grid" style="display: inline;">
                     <h:commandButton styleClass="btn btn-primary" id="octoberstudents" type="submit" value="Basmala October" style="width:17%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(1)}"   render="panelgroupbody" /> 
+                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(1)}"   render="panelgroupbody" /> 
                     </h:commandButton>
                     <h:commandButton styleClass="btn btn-success" id="dokkistudents" type="submit" value="Basmala Dokki" style="width:17%">
-                 <f:ajax  onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(2)}"  render="panelgroupbody"  /> 
+                 <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(2)}"  render="panelgroupbody"  /> 
 
                     </h:commandButton>
                       <h:commandButton styleClass="btn btn-danger" id="collegestudents" type="submit" value="College" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(3)}"  render="panelgroupbody"  /> 
+                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(3)}"  render="panelgroupbody"  /> 
 
                     </h:commandButton>
                     
                          <h:commandButton styleClass="btn btn-info" id="mbcstudents" type="submit" value="MBC" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(4)}"  render="panelgroupbody"  /> 
+                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(4)}"  render="panelgroupbody"  /> 
 
                     </h:commandButton>
                          <h:commandButton styleClass="btn btn-info" id="haramstudents" type="submit" value="Basmala Haram" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(5)}"  render="panelgroupbody"  /> 
+                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(5)}"  render="panelgroupbody"  /> 
 
                     </h:commandButton>
                     
@@ -93,12 +93,12 @@ function showDataContaner(data){
         
            <img id="ajaxloader"  src="131.gif" style="display: none;"/>
            
-            <h:panelGroup  id="StudentForm" rendered="#{adminHomePageView.student and !adminHomePageView.grade}" >
+            <h:panelGroup  id="StudentForm" rendered="#{addingGradesView.student and !addingGradesView.grade}" >
             
-    <h2>#{adminHomePageView.studentcentervalue}</h2>
+    <h2>#{addingGradesView.studentcentervalue}</h2>
                         
             <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{adminHomePageView.userslistdto}" var="item" rows="15">
+                        <h:dataTable styleClass="table table-striped" value="#{addingGradesView.userslistdto}" var="item" rows="15">
                             <h:column>
                                 <f:facet name="header"><h:outputText value="ID" /></f:facet>
                                 <h:outputText value="#{item.id}" />

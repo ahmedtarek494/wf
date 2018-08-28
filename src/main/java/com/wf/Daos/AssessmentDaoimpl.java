@@ -15,7 +15,7 @@ public class AssessmentDaoimpl extends AbstractDao implements AssessmentDao,Seri
 	
 
 	@Override
-	public void addAssessment(AssessmentLookup assessment) {
+	public int addAssessment(AssessmentLookup assessment) {
 		// TODO Auto-generated method stub
 		getSession().save(assessment);
 		System.out.println("saved//////////////////");
@@ -23,6 +23,8 @@ public class AssessmentDaoimpl extends AbstractDao implements AssessmentDao,Seri
 		System.out.println("flushed////////////////////");
 		getSession().clear();
 		System.out.println("cleared///////////////////");
+		
+		return assessment.getId();
 	}
 	
 	

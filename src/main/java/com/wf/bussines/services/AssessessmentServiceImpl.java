@@ -12,9 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.wf.Daos.AssessmentDao;
+import com.wf.Daos.GradesDao;
 import com.wf.Daos.UserDao;
 import com.wf.controllers.dto.AssessmentDto;
+import com.wf.controllers.dto.GradesDto;
 import com.wf.entities.AssessmentLookup;
+import com.wf.entities.Grades;
 
 @Service
 public class AssessessmentServiceImpl extends ServicesManager implements AssessmentService,Serializable {
@@ -25,7 +28,8 @@ public class AssessessmentServiceImpl extends ServicesManager implements Assessm
 	@Autowired
 	private AssessmentDao assessmentDao;
 
-	
+	@Autowired
+	private GradesDao gradeDao;
 	
 
 	
@@ -37,7 +41,18 @@ public class AssessessmentServiceImpl extends ServicesManager implements Assessm
 		assessment.setAssessmentName(assessmentDto.getAssessmentNameDto());
 		assessment.setGradeFrom(assessmentDto.getGradeFromDto());
 	
-		assessmentDao.addAssessment(assessment);
+		int assessmentid=assessmentDao.addAssessment(assessment);
+		
+		assessment.setId(assessmentid);
+		
+		
+		Grades grade=new Grades();
+		grade.setAssesmenttype(assessment);;
+		
+		System.out.println("Assessment created");
+		System.out.println("******* Start create Assessment grades for students");
+	int id=	gradeDao.Creategradeform(grade);
+		System.out.println("finished "+id);
 		
 	}
 	
