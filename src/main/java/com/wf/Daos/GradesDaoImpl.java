@@ -1,10 +1,14 @@
 package com.wf.Daos;
 
 import java.io.Serializable;
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.wf.entities.Grades;
+import com.wf.entities.User;
 
 
 @Repository
@@ -26,6 +30,15 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 		
 		
 		return updateCount;
+	}
+
+	@Override
+	public List<Grades> findGradeByUserID(User user) {
+		// TODO Auto-generated method stub
+		Criteria criteria = getSession().createCriteria(Grades.class);
+		criteria.add(Restrictions.eq("userid", user));
+		
+		return criteria.list();
 	}
 
 }
