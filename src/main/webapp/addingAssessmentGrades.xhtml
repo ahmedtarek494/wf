@@ -56,7 +56,7 @@ function showDataContaner(data){
 			
 			<!-- content -->
 			<b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-			<h1>Dashboard Students</h1>
+			<h1>Add Grades For Students</h1>
             <hr/>
 			
 			<!-- two equal column -->
@@ -66,27 +66,31 @@ function showDataContaner(data){
 
                  
 	              <b:row styleClass="show-grid" style="display: inline;">
-                    <h:commandButton styleClass="btn btn-primary" id="octoberstudents" type="submit" value="Basmala October" style="width:17%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(1)}"   render="panelgroupbody" /> 
-                    </h:commandButton>
-                    <h:commandButton styleClass="btn btn-success" id="dokkistudents" type="submit" value="Basmala Dokki" style="width:17%">
-                 <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(2)}"  render="panelgroupbody"  /> 
+                <b:selectOneMenu value="5"  label="Choose Center :">
+           
+            <f:selectItem 
+                itemValue="1" itemLabel="Basmala October" />
+                <f:selectItem 
+                itemValue="2" itemLabel="Basmala Dokki" />
+                <f:selectItem 
+                itemValue="3" itemLabel="College" />
+                <f:selectItem 
+                itemValue="4" itemLabel="MBC" />
+                <f:selectItem 
+                itemValue="5" itemLabel="Basmala Haram" />
+        </b:selectOneMenu>
 
-                    </h:commandButton>
-                      <h:commandButton styleClass="btn btn-danger" id="collegestudents" type="submit" value="College" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(3)}"  render="panelgroupbody"  /> 
-
-                    </h:commandButton>
+             
+                 <b:selectOneMenu value="5"  label="Choose the Assessment">
+           
+            <f:selectItems value="#{addingGradesView.assessmentdto}" var="item"
+                itemValue="#{item.id}" itemLabel="#{item.assessmentNameDto}" />
+        </b:selectOneMenu>
                     
-                         <h:commandButton styleClass="btn btn-info" id="mbcstudents" type="submit" value="MBC" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(4)}"  render="panelgroupbody"  /> 
-
-                    </h:commandButton>
-                         <h:commandButton styleClass="btn btn-info" id="haramstudents" type="submit" value="Basmala Haram" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(5)}"  render="panelgroupbody"  /> 
-
-                    </h:commandButton>
                     
+                       <h:commandButton styleClass="btn btn-primary" id="search" type="submit" value="Basmala October" style="width:17%">
+                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(1)}"   render="panelgroupbody" /> 
+                    </h:commandButton>
                     
                     
             </b:row>
