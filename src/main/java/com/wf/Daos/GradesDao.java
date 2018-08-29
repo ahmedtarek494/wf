@@ -25,6 +25,7 @@ public interface GradesDao {
 =======
 	 public int Creategradeform(Grades grade);
 	
+	public List <Grades> findGradeByUserID(User user);
 	
 >>>>>>> a56597266563b746e811cd13f1418fde655ef9f9
 }

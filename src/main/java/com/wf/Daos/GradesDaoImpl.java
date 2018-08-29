@@ -62,6 +62,13 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 		
 		return criteria.list();	}
 =======
+	public List<Grades> findGradeByUserID(User user) {
+		// TODO Auto-generated method stub
+		Criteria criteria = getSession().createCriteria(Grades.class);
+		criteria.add(Restrictions.eq("userid", user));
+		
+		return criteria.list();
+	}
 >>>>>>> a56597266563b746e811cd13f1418fde655ef9f9
 
 }
