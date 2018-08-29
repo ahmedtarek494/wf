@@ -54,11 +54,14 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<Grades> getGradesByCenterAndtype(User objcenter, AssessmentLookup type) {
 		Criteria criteria = getSession().createCriteria(Grades.class);
 		criteria.add(Restrictions.eq("userid", objcenter));
 		criteria.add(Restrictions.eq("assessmenttype", type));
 		
 		return criteria.list();	}
+=======
+>>>>>>> a56597266563b746e811cd13f1418fde655ef9f9
 
 }
