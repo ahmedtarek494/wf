@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -21,14 +22,14 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void Creategradeform(List <User> user, Grades grade) {
+	public void Creategradeform( Grades grade) {
 		// TODO Auto-generated method stub
-	/*	String hqlInsert = "insert into Grades(userid,assessmenttype) select id,"+grade.getAssesmenttype().getId()+" from user";
+		String hqlInsert = "insert into Grades(userid,assessmenttype) select id,"+grade.getAssesmenttype().getId()+" from User";
 		System.out.println("before query");
 		int updateCount = getSession().createQuery(hqlInsert).executeUpdate();
 		
-		System.out.println("count :"+ updateCount);*/
-		int count = 0;
+		System.out.println("count :"+ updateCount);
+	/*	int count = 0;
 		for(User u: user)
 		{
 			Grades tempgrade =new Grades();
@@ -36,29 +37,32 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 			tempgrade.setUser(u);
 			getSession().save(tempgrade);
 			
-		/*	  
+			  
 			  count++;
 	            if ( (count % 20) == 0) {
 	            	getSession().flush();
 	            	getSession().clear();
 	            	System.out.println("20");
-	            }   */
+	            }   
 			System.out.println( "session : "+getSession().getTenantIdentifier());
 		}
 		
 		getSession().flush();
 		System.out.println("flush");
 		
-		getSession().clear();
+		getSession().clear();*/
 	
 	}
 
 	@Override
 	public List<Grades> getGradesByCenterAndtype(User objcenter, AssessmentLookup type) {
-		Criteria criteria = getSession().createCriteria(Grades.class);
-		criteria.add(Restrictions.eq("userid", objcenter));
-		criteria.add(Restrictions.eq("assessmenttype", type));
+		/*Query query = getSession().createQuery("from Grades where userid in(select id from User where center=:center1  )");
+		query.setParameter("center1", objcenter.getCenter().getId());*/
 		
+		Criteria criteria = getSession().createCriteria(Grades.class).add(Restrictions.eq("assessmenttype", type)).createCriteria("userid").add(Restrictions.eq("center", objcenter.getCenter()));
+	//	criteria.add(Restrictions.eq("userid", objcenter));
+	//	criteria.add(Restrictions.eq("assessmenttype", type));
+	
 		return criteria.list();	}
 	public List<Grades> findGradeByUserID(User user) {
 		// TODO Auto-generated method stub

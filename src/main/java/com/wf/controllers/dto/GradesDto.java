@@ -16,8 +16,32 @@ public class GradesDto implements Serializable {
 	
 	private UserDto userid;
 	
-	private float usergrade;
+	private int rownumber;
+	
+	public int getRownumber() {
+		return rownumber;
+	}
 
+	public void setRownumber(int rownumber) {
+		this.rownumber = rownumber;
+	}
+
+	public boolean isGradestatus() {
+		if(usergrade==0.0)
+			gradestatus=false;
+	
+		
+		return gradestatus;
+	}
+
+	public void setGradestatus(boolean gradestatus) {
+		this.gradestatus = gradestatus;
+	}
+
+	private float usergrade;
+    
+	private boolean gradestatus=true;
+	
 	public GradesDto()
 	{
 		
