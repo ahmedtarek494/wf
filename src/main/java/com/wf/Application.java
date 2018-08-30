@@ -114,7 +114,7 @@ public class Application extends SpringBootServletInitializer implements Seriali
         properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
         properties.put("current_session_context_class", env.getRequiredProperty("current_session_context_class"));
-        
+        properties.put("hibernate.jdbc.batch_size", env.getRequiredProperty("hibernate.jdbc.batch_size"));
         //c3p0 configuration 
         properties.put("hibernate.c3p0.acquire_increment", env.getRequiredProperty("hibernate.c3p0.acquire_increment"));
         properties.put("hibernate.c3p0.idle_test_period", env.getRequiredProperty("hibernate.c3p0.idle_test_period"));

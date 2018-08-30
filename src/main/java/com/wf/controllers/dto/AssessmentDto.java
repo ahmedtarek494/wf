@@ -9,6 +9,15 @@ public class AssessmentDto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+=======
+	private int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String assessmentNameDto;
 	private float gradeFromDto;
 	public String getAssessmentNameDto() {

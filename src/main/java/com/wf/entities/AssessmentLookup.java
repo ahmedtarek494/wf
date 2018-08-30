@@ -18,6 +18,8 @@ public class AssessmentLookup implements Serializable {
 	/**
 	 * 
 	 */
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,11 +27,12 @@ public class AssessmentLookup implements Serializable {
 	@Column(name = "assessmentid", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name="assessmentName")
+	@Column(name="assessmentname")
 	private String assessmentName;
 	
 	
-	@Column(name="gradeFrom")
+	
+	@Column(name="gradefrom")
 	private float gradeFrom;
 
 

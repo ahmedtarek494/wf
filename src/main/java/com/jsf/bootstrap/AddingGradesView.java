@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.wf.bussines.services.AssessmentService;
 import com.wf.bussines.services.CenterService;
 import com.wf.bussines.services.UserService;
+import com.wf.controllers.dto.AssessmentDto;
 import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.UserDto;
 
@@ -33,14 +35,33 @@ public class AddingGradesView  implements Serializable{
 		WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).
 	                                   getAutowireCapableBeanFactory().
 	                                   autowireBean(this);
+		
+		try {
+			assessmentdto=assessmentservice.findAllAssessments();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	    }
 	
 	/**
 	 * 
 	 */
-	
-	 private ArrayList<UserDto> userslistdto;
+	 private ArrayList<AssessmentDto> assessmentdto;
+
+	public ArrayList<AssessmentDto> getAssessmentdto() {
+		return assessmentdto;
+	}
+	public void setAssessmentdto(ArrayList<AssessmentDto> assessmentdto) {
+		this.assessmentdto = assessmentdto;
+	}
+
+	private ArrayList<UserDto> userslistdto;
 	 private ArrayList<CenterDto> centerlistdto;
+	 
+	 
 	public ArrayList<CenterDto> getCenterlistdto() {
 		return centerlistdto;
 	}
@@ -60,6 +81,10 @@ public class AddingGradesView  implements Serializable{
 	UserService userservice;
 	@Autowired
 	CenterService centerservice;
+	
+	@Autowired
+	AssessmentService assessmentservice;
+	
 	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
@@ -101,10 +126,10 @@ public class AddingGradesView  implements Serializable{
 		this.grade = grade;
 	}
 	
-	public void handleAjaxStudent(int centerid) {
+	public void AjaxStudentGrades(int centerid) {
 	
 		
-		System.out.println("handle ajax student");
+		System.out.println("ajax Student grade");
 			student=true;
 		 grade=false;
 		 

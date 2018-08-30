@@ -93,6 +93,9 @@ public class addingAssessmentBean {
 	}
 	catch (Exception e) {
 		// TODO: handle exception
+		System.out.println("Error : ");
+		e.printStackTrace();
+		
 		checkAssessmentFaliure=true;
 		setCheckAssessmentFailureMessage("Warning! Try again to add assessment");
 	}

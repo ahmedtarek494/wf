@@ -36,6 +36,8 @@ function showDataContaner(data){
 			}
 		}
 
+
+
 </script>
 </h:head>
 <h:body style="padding-top: 60px">
@@ -56,7 +58,7 @@ function showDataContaner(data){
 			
 			<!-- content -->
 			<b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-			<h1>Dashboard Students</h1>
+			<h1>Add Grades For Students</h1>
             <hr/>
 			
 			<!-- two equal column -->
@@ -66,69 +68,84 @@ function showDataContaner(data){
 
                  
 	              <b:row styleClass="show-grid" style="display: inline;">
-                    <h:commandButton styleClass="btn btn-primary" id="octoberstudents" type="submit" value="Basmala October" style="width:17%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(1)}"   render="panelgroupbody" /> 
-                    </h:commandButton>
-                    <h:commandButton styleClass="btn btn-success" id="dokkistudents" type="submit" value="Basmala Dokki" style="width:17%">
-                 <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(2)}"  render="panelgroupbody"  /> 
+                <b:selectOneMenu value="#{addingGradesView.centerid}" id="center" label="Choose Center :">
+           
+            <f:selectItem 
+                itemValue="1" itemLabel="Basmala October" />
+                <f:selectItem 
+                itemValue="2" itemLabel="Basmala Dokki" />
+                <f:selectItem 
+                itemValue="3" itemLabel="College" />
+                <f:selectItem 
+                itemValue="4" itemLabel="MBC" />
+                <f:selectItem 
+                itemValue="5" itemLabel="Basmala Haram" />
+        </b:selectOneMenu>
 
-                    </h:commandButton>
-                      <h:commandButton styleClass="btn btn-danger" id="collegestudents" type="submit" value="College" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(3)}"  render="panelgroupbody"  /> 
-
-                    </h:commandButton>
+             
+                 <b:selectOneMenu value="#{addingGradesView.assessmentid}" id="assessmenttype" label="Choose the Assessment">
+           
+            <f:selectItems value="#{addingGradesView.assessmentdto}" var="item"
+                itemValue="#{item.id}" itemLabel="#{item.assessmentNameDto}" />
+        </b:selectOneMenu>
                     
-                         <h:commandButton styleClass="btn btn-info" id="mbcstudents" type="submit" value="MBC" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(4)}"  render="panelgroupbody"  /> 
-
-                    </h:commandButton>
-                         <h:commandButton styleClass="btn btn-info" id="haramstudents" type="submit" value="Basmala Haram" style="width:17%">
-                 <f:ajax onevent="showDataContaner" event="click"  listener="#{addingGradesView.handleAjaxStudent(5)}"  render="panelgroupbody"  /> 
-
-                    </h:commandButton>
                     
+                       <h:commandButton styleClass="btn btn-primary" id="search" type="submit" value="Basmala October" style="width:17%">
+                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.AjaxStudentGrades()}" execute="center assessmenttype"  render="panelgroupbody" /> 
+                    </h:commandButton>
                     
                     
             </b:row>
         
            <img id="ajaxloader"  src="131.gif" style="display: none;"/>
-           
-            <h:panelGroup  id="StudentForm" rendered="#{addingGradesView.student and !addingGradesView.grade}" >
+             <h:form id="tableform">
+            <h:panelGroup  id="StudentForm"  >
             
-    <h2>#{addingGradesView.studentcentervalue}</h2>
-                        
+    
+                      
             <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{addingGradesView.userslistdto}" var="item" rows="15">
+                        <h:dataTable id="table"  styleClass="table table-striped" value="#{addingGradesView.gradesdto}" var="item" >
                             <h:column>
                                 <f:facet name="header"><h:outputText value="ID" /></f:facet>
-                                <h:outputText value="#{item.id}" />
+                                <h:outputText value="#{item.userid.id}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Name" /></f:facet>
-                                <h:outputText value="#{item.name}" />
+                                <h:outputText value="#{item.userid.name}" />
+                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Center" /></f:facet>
-                                <h:outputText value="#{item.center.centername}" />
+                                <h:outputText value="#{item.userid.center.centername}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><h:outputText value="Mobile" /></f:facet>
-                                <h:outputText value="#{item.mobilenumber}" />
+                                <f:facet name="header"><h:outputText value="Assessment" /></f:facet>
+                                <h:outputText value="#{item.assessmenttype.assessmentNameDto}" />
                             </h:column>
                              <h:column>
-                                <f:facet name="header"><h:outputText value="UserName" /></f:facet>
-                                <h:outputText value="#{item.username}" />
+                                <f:facet name="header"><h:outputText value="Student Grade" /></f:facet>
+                                <h:outputText id="outp" value="#{item.usergrade}" rendered="#{item.gradestatus}" />
+                                <h:inputText value="#{item.usergrade}" rendered="#{!item.gradestatus}" />
                             </h:column>
                             
                                <h:column>
-                                <f:facet name="header"><h:outputText value="Password" /></f:facet>
-                                <h:outputText value="#{item.password}" />
+                                <f:facet name="header"><h:outputText value="Assessment Grade" /></f:facet>
+                                <h:outputText value="#{item.assessmenttype.gradeFromDto}" />
+                            </h:column>
+                             
+                             <h:column >
+                                
+           <h:commandButton   styleClass="btn btn-primary" id="search1" action="#{addingGradesView.changeGradeStatus(item.rownumber)}" type="submit" value="Edit"  style="width:20%">
+                           
+                               <f:ajax render="tableform:table" /> 
+          
+                    </h:commandButton>
                             </h:column>
                             
                         </h:dataTable>
                     </b:row>
-			
 			</h:panelGroup>
+					     </h:form>
 		
 </h:panelGroup>			
 
