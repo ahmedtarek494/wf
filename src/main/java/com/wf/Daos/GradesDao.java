@@ -25,4 +25,5 @@ public interface GradesDao {
 	
 	public List<Grades> getTopTenStudent();
 	
+
 }
