@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
+import com.google.apphosting.api.proto2api.UserServicePbInternalDescriptors;
 
 @Entity
 @Table(name="Grades")
@@ -58,10 +59,10 @@ public class Grades implements Serializable {
 	}
 
 
+
 	public void setUser(User userid) {
 		this.userid = userid;
-	}
-
+}
 
 	public AssessmentLookup getAssesmenttype() {
 		return assessmenttype;
@@ -92,7 +93,7 @@ public class Grades implements Serializable {
 	@JoinColumn(name = "userid", nullable = false)
 	private User userid;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name = "assessmenttype", nullable = false)
 	private AssessmentLookup assessmenttype;
 	
@@ -100,5 +101,5 @@ public class Grades implements Serializable {
 	@Column(name="usergrade")
 	private float usergrade;
 	
-
+    
 }
