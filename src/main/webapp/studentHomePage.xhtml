@@ -59,41 +59,57 @@ function showDataContaner(data){
 			<h1>Dashboard Students</h1>
             <hr/>
 			
+			
+			
+			
+			
+			
+			
 			<!-- two equal column -->
 <h:form id="form">        
 <h:panelGroup id="panelgroupbody">
 
 
-                 
+        <b:row styleClass="table-responsive">
+                        <h:dataTable styleClass="table table-striped" value="#{studentHomePageView.gradesToPStudentDtos}" var="top" rows="15">
+
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="#" /></f:facet>
+                                <h:outputText value="#{top.username}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Header" /></f:facet>
+                                <h:outputText value="#{top.usergrade}" />
+                            </h:column>
+
+                        </h:dataTable>
+                    </b:row>
+			
+			         
 	             
                      
             <h:panelGroup>
             
-    <h2>Student home page</h2>
+    <h2>#{studentHomePageView.studentname}</h2>
                         
 <b:row styleClass="table-responsive">
                         <h:dataTable styleClass="table table-striped" value="#{studentHomePageView.gradeslistdto}" var="item" rows="15">
                             <h:column>
                                 <f:facet name="header"><h:outputText value="ID" /></f:facet>
-                                <h:outputText value="#{item.id}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"><h:outputText value="userid" /></f:facet>
-                                <h:outputText value="#{item.userid}" />
+                                <h:outputText value="#{item.rownumber}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Assessment Name" /></f:facet>
                                 <h:outputText value="#{item.assessmenttype.assessmentNameDto}" />
                             </h:column>
-                            <h:column>
-                                <f:facet name="header"><h:outputText value="Grade From" /></f:facet>
-                                <h:outputText value="#{item.assessmenttype.gradeFromDto}" />
-                            </h:column>
                              <h:column>
                                 <f:facet name="header"><h:outputText value="Grade" /></f:facet>
                                 <h:outputText value="#{item.usergrade}" />
                             </h:column>
-                            
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Grade From" /></f:facet>
+                                <h:outputText value="#{item.assessmenttype.gradeFromDto}" />
+                            </h:column>
 
                             
                         </h:dataTable>

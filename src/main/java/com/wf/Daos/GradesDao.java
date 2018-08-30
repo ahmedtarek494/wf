@@ -18,4 +18,6 @@ public interface GradesDao {
 	
 	public List <Grades> findGradeByUserID(User user);
 	
+	public List<Grades> getTopTenStudent();
+	
 }

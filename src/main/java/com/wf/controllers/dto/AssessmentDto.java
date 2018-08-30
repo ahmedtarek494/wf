@@ -5,6 +5,10 @@ import java.io.Serializable;
 public class AssessmentDto implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String assessmentNameDto;
 	private float gradeFromDto;
 	public String getAssessmentNameDto() {

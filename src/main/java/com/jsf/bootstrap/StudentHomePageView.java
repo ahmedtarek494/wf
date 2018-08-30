@@ -17,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.wf.bussines.services.GradesService;
 import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.GradesDto;
+import com.wf.controllers.dto.GradesToPStudentDto;
 
 @ManagedBean
 @RequestScope
@@ -37,9 +38,49 @@ public void setGradeslistdto(ArrayList<GradesDto> gradeslistdto) {
 	this.gradeslistdto = gradeslistdto;
 }
 
+//to get student user name
+private String studentname;
+
 	
-	
-	 @PostConstruct
+	 public String getStudentname() {
+	return studentname;
+}
+
+
+public void setStudentname(String studentname) {
+	this.studentname = studentname;
+}
+
+//to get id of grades
+private int id;
+
+
+	public int getId() {
+	return id;
+}
+
+
+public void setId(int id) {
+	this.id = id;
+}
+
+//to view leaderboard
+private ArrayList<GradesToPStudentDto> gradesToPStudentDtos;
+
+
+
+
+	public ArrayList<GradesToPStudentDto> getGradesToPStudentDtos() {
+	return gradesToPStudentDtos;
+}
+
+
+public void setGradesToPStudentDtos(ArrayList<GradesToPStudentDto> gradesToPStudentDtos) {
+	this.gradesToPStudentDtos = gradesToPStudentDtos;
+}
+
+
+	@PostConstruct
 	    private void init()  {
 	    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	        ServletContext servletContext = (ServletContext) externalContext.getContext();
@@ -49,10 +90,23 @@ public void setGradeslistdto(ArrayList<GradesDto> gradeslistdto) {
 		
 		try {
 			gradeslistdto=gradesService.getGradesByUserId(1001);
+			studentname=gradeslistdto.get(0).getUserid().getUsername();
+			System.out.println("student name : "+gradeslistdto.get(0).getUserid().getUsername());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			gradesToPStudentDtos=gradesService.getTopTenStudentGrades();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		e.printStackTrace();
+		}
+		
+		
+		
 		
 	    }
 

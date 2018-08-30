@@ -11,6 +11,7 @@ public class GradesDto implements Serializable {
 	
 	private int id;
 	
+	private int rownumber;
 	
 	private AssessmentDto assessmenttype;
 	
@@ -61,6 +62,14 @@ public class GradesDto implements Serializable {
 
 	public void setUsergrade(float usergrade) {
 		this.usergrade = usergrade;
+	}
+
+	public int getRownumber() {
+		return rownumber;
+	}
+
+	public void setRownumber(int rownumber) {
+		this.rownumber = rownumber;
 	}
 
 

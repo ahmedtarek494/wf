@@ -22,7 +22,7 @@ public class AssessmentLookup implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false)
+	@Column(name = "assessmentid", unique = true, nullable = false)
 	private int id;
 	
 	@Column(name="assessmentName")

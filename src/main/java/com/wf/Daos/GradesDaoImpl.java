@@ -4,9 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.ResultTransformer;
 import org.springframework.stereotype.Repository;
 
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.search.Results;
 import com.wf.entities.Grades;
 import com.wf.entities.User;
 
@@ -39,6 +46,13 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 		criteria.add(Restrictions.eq("userid", user));
 		
 		return criteria.list();
+	}
+	
+	public List<Grades> getTopTenStudent()
+	{
+		org.hibernate.Query query= getSession().createQuery("SELECT new map userid,SUM(g.usergrade) AS total_grades from Grades as g group by userid order by total_grades desc").setResultTransformer(new ResultTransformer(Results.class))
+		        .list();
+		return query.list();
 	}
 
 }
