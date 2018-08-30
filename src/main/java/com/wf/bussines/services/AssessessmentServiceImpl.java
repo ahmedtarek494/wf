@@ -45,7 +45,7 @@ public class AssessessmentServiceImpl extends ServicesManager implements Assessm
 		assessment.setId(assessmentid);
 		
 		///////////////////////////
-		//List<User> user=userDao.findAll();
+		List<User> user=userDao.findAll();
 		
 		
 		Grades grade=new Grades();
@@ -53,7 +53,7 @@ public class AssessessmentServiceImpl extends ServicesManager implements Assessm
 		
 		System.out.println("Assessment created");
 		System.out.println("******* Start create Assessment grades for students");
-	gradeDao.Creategradeform(grade);
+	gradeDao.Creategradeform(user,grade);
 		System.out.println("finished ");
 		
 	}

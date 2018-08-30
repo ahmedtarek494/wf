@@ -4,7 +4,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.google.apphosting.api.proto2api.UserServicePbInternalDescriptors;
 
 @Entity
 @Table(name="Grades")
@@ -37,8 +34,8 @@ public class Grades implements Serializable {
 	public Grades(int id, User user, AssessmentLookup assesmenttype, float usergrade) {
 		super();
 		this.id = id;
-		this.userid = user;
-		this.assessmenttype = assesmenttype;
+		this.user = user;
+		this.assesmenttype = assesmenttype;
 		this.usergrade = usergrade;
 	}
 
@@ -54,22 +51,22 @@ public class Grades implements Serializable {
 
 
 	public User getUser() {
-		return userid;
+		return user;
 	}
 
 
 	public void setUser(User user) {
-		this.userid = user;
+		this.user = user;
 	}
 
 
 	public AssessmentLookup getAssesmenttype() {
-		return assessmenttype;
+		return assesmenttype;
 	}
 
 
 	public void setAssesmenttype(AssessmentLookup assesmenttype) {
-		this.assessmenttype = assesmenttype;
+		this.assesmenttype = assesmenttype;
 	}
 
 
@@ -88,17 +85,17 @@ public class Grades implements Serializable {
 	}
 
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userid", nullable = false)
-	private User userid;
+	private User user;
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assessmenttype", nullable = false)
-	private AssessmentLookup assessmenttype;
+	private AssessmentLookup assesmenttype;
 	
 	
 	@Column(name="usergrade")
 	private float usergrade;
 	
-    
+
 }

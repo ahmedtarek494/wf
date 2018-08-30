@@ -15,11 +15,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.wf.bussines.services.AssessmentService;
 import com.wf.bussines.services.CenterService;
-import com.wf.bussines.services.GradesService;
 import com.wf.bussines.services.UserService;
 import com.wf.controllers.dto.AssessmentDto;
 import com.wf.controllers.dto.CenterDto;
-import com.wf.controllers.dto.GradesDto;
 import com.wf.controllers.dto.UserDto;
 
 
@@ -51,16 +49,7 @@ public class AddingGradesView  implements Serializable{
 	/**
 	 * 
 	 */
-	 
-	 private ArrayList<GradesDto> gradesdto;
-	 public ArrayList<GradesDto> getGradesdto() {
-		return gradesdto;
-	}
-	public void setGradesdto(ArrayList<GradesDto> gradesdto) {
-		this.gradesdto = gradesdto;
-	}
-
-	private ArrayList<AssessmentDto> assessmentdto;
+	 private ArrayList<AssessmentDto> assessmentdto;
 
 	public ArrayList<AssessmentDto> getAssessmentdto() {
 		return assessmentdto;
@@ -96,23 +85,11 @@ public class AddingGradesView  implements Serializable{
 	@Autowired
 	AssessmentService assessmentservice;
 	
-	@Autowired
-	GradesService gradesservice;
-	
-	
-	
 	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
 	private ArrayList<UserDto> userslist;
 	private boolean dropdownbool=false;
-	private int centerid;
-	private int assessmentid;
-	
-	
-	
-	
-	
 	public boolean isDropdownbool() {
 		return dropdownbool;
 	}
@@ -149,7 +126,7 @@ public class AddingGradesView  implements Serializable{
 		this.grade = grade;
 	}
 	
-	public void AjaxStudentGrades() {
+	public void AjaxStudentGrades(int centerid) {
 	
 		
 		System.out.println("ajax Student grade");
@@ -158,16 +135,16 @@ public class AddingGradesView  implements Serializable{
 		 
 	      try {
 	       System.out.println("beforeeeeee");
-	                       
-	     this.gradesdto= gradesservice.getGradesByCenterAndtype(centerid, assessmentid);
+	             
+	     this.userslistdto= userservice.getUsersByCenter(centerid);
 	     
+	     this.studentcentervalue=userslistdto.get(0).getCenter().getCentername();
 			System.out.println("after");
 			
 	      }
 	      catch(Exception e)
 	      {
 	    	  System.out.println("exp "+ e.getMessage());
-	    	  e.printStackTrace();
 	    	  
 	      }
 			
@@ -178,28 +155,6 @@ public class AddingGradesView  implements Serializable{
 	System.out.println("grade in student handle: "+grade);
 	}
 	
-	public void changeGradeStatus(int rowno)
-	{
-		
-		System.out.println("change  grade status");
-		
-		this.gradesdto.get(rowno).setGradestatus(false);
-		
-		
-	}
-	
-	public int getCenterid() {
-		return centerid;
-	}
-	public void setCenterid(int centerid) {
-		this.centerid = centerid;
-	}
-	public int getAssessmentid() {
-		return assessmentid;
-	}
-	public void setAssessmentid(int assessmentid) {
-		this.assessmentid = assessmentid;
-	}
 	public void handleAjaxGrade() {
 		grade=true;
 		student=false;
