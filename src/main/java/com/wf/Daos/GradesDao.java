@@ -16,7 +16,7 @@ public interface GradesDao {
 	
 	@Bean
 
-	 public void Creategradeform( List <User> user,Grades grade);
+	 public void Creategradeform( Grades grade);
 	
 	public List<Grades> getGradesByCenterAndtype(User objcenter,AssessmentLookup type);
 
