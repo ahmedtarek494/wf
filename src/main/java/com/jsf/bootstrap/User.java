@@ -17,6 +17,7 @@ public class User {
 	
 	private String password;
 	
+	public static final String AUTH_KEY = "app.user.name";
 	@Autowired
 	UserService userservice;
 	
@@ -61,6 +62,16 @@ public class User {
 	}
 	
 
+	  public boolean isLoggedIn() {
+	    return FacesContext.getCurrentInstance().getExternalContext()
+	        .getSessionMap().get(AUTH_KEY) != null;
+	  }
+	
+	public String logout() {
+	    FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+	        .remove(AUTH_KEY);
+	    return null;
+	  }
 
 	public String login() throws Exception {
 		
@@ -73,7 +84,8 @@ public class User {
 		String nextPage= userservice.loginService(userName, password);
 		context.getExternalContext().redirect(nextPage);
 		System.out.println("after");
-
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
+		        AUTH_KEY, userName);
 		return nextPage;
       }
       catch(Exception e)

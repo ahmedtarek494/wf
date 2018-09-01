@@ -108,11 +108,17 @@ public class AddingGradesView  implements Serializable{
 	private boolean dropdownbool=false;
 	private int centerid;
 	private int assessmentid;
+	private boolean gradestatus=true;
 	
 	
 	
 	
-	
+	public boolean isGradestatus() {
+		return gradestatus;
+	}
+	public void setGradestatus(boolean gradestatus) {
+		this.gradestatus = gradestatus;
+	}
 	public boolean isDropdownbool() {
 		return dropdownbool;
 	}
@@ -178,12 +184,12 @@ public class AddingGradesView  implements Serializable{
 	System.out.println("grade in student handle: "+grade);
 	}
 	
-	public void changeGradeStatus(int rowno)
+	public void changeGradeStatus()
 	{
 		
 		System.out.println("change  grade status");
 		
-		this.gradesdto.get(rowno).setGradestatus(false);
+		this.gradestatus=false;
 		
 		
 	}
