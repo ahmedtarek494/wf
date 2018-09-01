@@ -1,22 +1,22 @@
 package com.wf.Daos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Projections;
 import org.hibernate.Query;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.ResultTransformer;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
-import com.google.appengine.api.search.Results;
 import com.wf.entities.AssessmentLookup;
 import com.wf.entities.Grades;
 import com.wf.entities.User;
+
+import javassist.convert.Transformer;
 
 
 @Repository
@@ -80,9 +80,23 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 	
 	public List<Grades> getTopTenStudent()
 	{
-		org.hibernate.Query query= getSession().createQuery("SELECT new map userid,SUM(g.usergrade) AS total_grades from Grades as g group by userid order by total_grades desc");
-		        
-		return query.list();
+//		String sql="SELECT SUM(g.usergrade) AS total_grades from Grades as g group by userid order by total_grades desc";
+//		Query query= getSession().createQuery(sql);
+//
+//		Criteria criteria=getSession().createCriteria(Grades.class);
+//		criteria.setProjection(Projections.sum("usergrade"));
+//		criteria.setProjection(Projections.groupProperty("userid"));
+//		criteria.setResultTransformer(Transformers.aliasToBean(Grades.class)).list();
+
+		Criteria criteria=getSession().createCriteria(Grades.class);
+		criteria.setProjection(Projections.sum("usergrade"));
+		criteria.setProjection(Projections.groupProperty("userid"));
+		criteria.setResultTransformer(Transformers.aliasToBean(Grades.class)).list();
+		System.out.println("criteria list : "+criteria);
+		return criteria.list();
+
+		
+		
 	}
 
 }
