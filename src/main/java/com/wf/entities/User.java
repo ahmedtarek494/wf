@@ -68,7 +68,7 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "center", nullable = false)
 	private Center center;
 

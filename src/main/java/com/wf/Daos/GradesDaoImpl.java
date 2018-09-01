@@ -28,14 +28,14 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void Creategradeform( Grades grade) {
+	public void Creategradeform(List<User> user, Grades grade) {
 		// TODO Auto-generated method stub
-		String hqlInsert = "insert into Grades(userid,assessmenttype) select id,"+grade.getAssesmenttype().getId()+" from User";
+	/*	String hqlInsert = "insert into Grades(userid,assessmenttype) select id,"+grade.getAssesmenttype().getId()+" from User";
 		System.out.println("before query");
 		int updateCount = getSession().createQuery(hqlInsert).executeUpdate();
 		
-		System.out.println("count :"+ updateCount);
-	/*	int count = 0;
+		System.out.println("count :"+ updateCount);*/
+		int count = 0;
 		for(User u: user)
 		{
 			Grades tempgrade =new Grades();
@@ -56,7 +56,7 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 		getSession().flush();
 		System.out.println("flush");
 		
-		getSession().clear();*/
+		getSession().clear();
 	
 	}
 

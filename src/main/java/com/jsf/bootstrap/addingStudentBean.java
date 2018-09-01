@@ -116,7 +116,7 @@ public class addingStudentBean {
 	 int userid= userservice.createUser(userdto);
 
 	 checkValue=true;
-	setSuccessfulMessage("Well done! You successfully added student");
+	setSuccessfulMessage("Well done! You successfully added student, Student id is "+userid);
 	
 	//context.addMessage(null, new FacesMessage("Successful transaction ,student has been added , USER ID  is "+userid));
 	

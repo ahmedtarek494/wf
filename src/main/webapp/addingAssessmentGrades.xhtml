@@ -90,19 +90,25 @@ function showDataContaner(data){
         </b:selectOneMenu>
                     
                     
-                       <h:commandButton styleClass="btn btn-primary" id="search" type="submit" value="Basmala October" style="width:17%">
+                       <h:commandButton styleClass="btn btn-primary" id="search" type="submit" value="Search" style="width:17%">
                   <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.AjaxStudentGrades()}" execute="center assessmenttype"  render="panelgroupbody" /> 
                     </h:commandButton>
                     
                     
             </b:row>
-        
+        <h:commandButton   styleClass="btn btn-primary" id="search1"   type="submit" value="Edit"   style="width:20%">
+                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.changeGradeStatus()}"   render="StudentForm table" /> 
+                    </h:commandButton>
            <img id="ajaxloader"  src="131.gif" style="display: none;"/>
-             <h:form id="tableform">
-            <h:panelGroup  id="StudentForm"  >
+            <h:panelGroup  id="StudentForm" rendered="#{addingGradesView.student and !addingGradesView.grade}" >
             
-    
-                      
+                
+                                
+                           
+                            
+           
+                           
+                       
             <b:row styleClass="table-responsive">
                         <h:dataTable id="table"  styleClass="table table-striped" value="#{addingGradesView.gradesdto}" var="item" >
                             <h:column>
@@ -124,8 +130,8 @@ function showDataContaner(data){
                             </h:column>
                              <h:column>
                                 <f:facet name="header"><h:outputText value="Student Grade" /></f:facet>
-                                <h:outputText id="outp" value="#{item.usergrade}" rendered="#{item.gradestatus}" />
-                                <h:inputText value="#{item.usergrade}" rendered="#{!item.gradestatus}" />
+                                <h:outputText id="outp" value="#{item.usergrade}" rendered="#{addingGradesView.gradestatus}" />
+                                <h:inputText value="#{item.usergrade}" rendered="#{!addingGradesView.gradestatus}" />
                             </h:column>
                             
                                <h:column>
@@ -133,19 +139,11 @@ function showDataContaner(data){
                                 <h:outputText value="#{item.assessmenttype.gradeFromDto}" />
                             </h:column>
                              
-                             <h:column >
-                                
-           <h:commandButton   styleClass="btn btn-primary" id="search1" action="#{addingGradesView.changeGradeStatus(item.rownumber)}" type="submit" value="Edit"  style="width:20%">
-                           
-                               <f:ajax render="tableform:table" /> 
-          
-                    </h:commandButton>
-                            </h:column>
+                
                             
                         </h:dataTable>
                     </b:row>
 			</h:panelGroup>
-					     </h:form>
 		
 </h:panelGroup>			
 
