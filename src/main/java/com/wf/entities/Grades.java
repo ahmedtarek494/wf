@@ -89,11 +89,11 @@ public class Grades implements Serializable {
 	}
 
 
-	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userid", nullable = false)
 	private User userid;
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "assessmenttype", nullable = false)
 	private AssessmentLookup assessmenttype;
 	
