@@ -38,6 +38,7 @@ public void setGradeslistdto(ArrayList<GradesDto> gradeslistdto) {
 	this.gradeslistdto = gradeslistdto;
 }
 
+
 //to get student user name
 private String studentname;
 
@@ -63,6 +64,7 @@ private int id;
 public void setId(int id) {
 	this.id = id;
 }
+
 
 //to view leaderboard
 private ArrayList<GradesToPStudentDto> gradesToPStudentDtos;
@@ -100,18 +102,15 @@ public void setGradesToPStudentDtos(ArrayList<GradesToPStudentDto> gradesToPStud
 		try {
 			gradesToPStudentDtos=gradesService.getTopTenStudentGrades();
 			
+			
 		}catch (Exception e) {
 			// TODO: handle exception
 		e.printStackTrace();
 		}
 		
-		
-		
-		
+
 	    }
 
-
-	
 		
 	
 	

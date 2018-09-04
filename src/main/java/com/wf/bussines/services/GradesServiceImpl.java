@@ -2,8 +2,13 @@ package com.wf.bussines.services;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt; 
 import com.wf.Daos.GradesDao;
+import com.wf.Daos.GradesTopStudentDao;
+import com.wf.Daos.GradesTopStudentDaoImpl;
 import com.wf.controllers.dto.AssessmentDto;
 import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.GradesDto;
@@ -12,10 +17,15 @@ import com.wf.controllers.dto.UserDto;
 import com.wf.entities.AssessmentLookup;
 import com.wf.entities.Center;
 import com.wf.entities.Grades;
+import com.wf.entities.GradesStudentView;
 import com.wf.entities.User;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.hibernate.dialect.function.StandardAnsiSqlAggregationFunctions.SumFunction;
+import org.primefaces.component.collector.Collector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +38,9 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private GradesDao gradesDao;
+	
+	@Autowired
+	private GradesTopStudentDao gradesTopStudentDao;
 	
 	@Override
 	public ArrayList<GradesDto> getGradesByUserId(int sessionId) throws Exception {
@@ -97,19 +110,28 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 	public ArrayList<GradesToPStudentDto> getTopTenStudentGrades() throws Exception {
 		// TODO Auto-generated method stub
 		ArrayList<GradesToPStudentDto> GradesTopStudentList=new ArrayList<GradesToPStudentDto>();
-		
-		List<Grades> topStudentGrades=gradesDao.getTopTenStudent();
+
+		List<GradesStudentView> topStudentGrades=gradesTopStudentDao.getTopTenStudent();
 		System.out.println("size : "+topStudentGrades.size());
+		//System.out.println("size : "+topStudentGrades.get(0).getUsergrade());
 		if(topStudentGrades==null)
 			throw new Exception("No Students Available");
 		else
 		{
-			for(Grades g:topStudentGrades)
+		System.out.println("innnnnnnnn");
+			for(GradesStudentView g:topStudentGrades)
 			{
-				System.out.println("kolo"+g.getUsergrade());
+				
+				System.out.println("name : "+g.getUserid().getName());
+				System.out.println("top user grade : "+g.getTotalusergrade());
+
+				
 				GradesToPStudentDto gradesToPStudentDto=new GradesToPStudentDto();
-				//gradesToPStudentDto.setUsername(g.getUser().getUsername());
-				gradesToPStudentDto.setUsergrade(g.getUsergrade());
+				gradesToPStudentDto.setUsername(g.getUserid().getName());
+				gradesToPStudentDto.setUsergrade(g.getTotalusergrade());
+				gradesToPStudentDto.setUsercenter(g.getUserid().getCenter().getCentername());
+				gradesToPStudentDto.setUsergender(g.getUserid().getGender());
+
 
 				GradesTopStudentList.add(gradesToPStudentDto);
 				
