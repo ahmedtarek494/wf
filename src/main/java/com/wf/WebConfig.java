@@ -12,7 +12,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public void addViewControllers( ViewControllerRegistry registry ) {
        
     	registry.addViewController( "/" ).setViewName( "forward:/faces/test.xhtml" );
-        registry.addViewController( "/faces/adminHomePage.xhtml" ).setViewName( "/Home" );
+        registry.addViewController( "/HomePage" ).setViewName( "forward:/faces/studentHomePage.xhtml" );
+     //   registry.addViewController( "/faces/HomePage" ).setViewName( "forward:/faces/adminHomePage.xhtml" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
         super.addViewControllers( registry );
     }

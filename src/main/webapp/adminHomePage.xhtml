@@ -98,7 +98,7 @@ function showDataContaner(data){
     <h2>#{adminHomePageView.studentcentervalue}</h2>
                         
             <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{adminHomePageView.userslistdto}" var="item" rows="15">
+                        <b:dataTable styleClass="table table-striped" value="#{adminHomePageView.userslistdto}" var="item" rows="15">
                             <h:column>
                                 <f:facet name="header"><h:outputText value="ID" /></f:facet>
                                 <h:outputText value="#{item.id}" />
@@ -125,7 +125,7 @@ function showDataContaner(data){
                                 <h:outputText value="#{item.password}" />
                             </h:column>
                             
-                        </h:dataTable>
+                        </b:dataTable>
                     </b:row>
 			
 			</h:panelGroup>

@@ -16,12 +16,12 @@
         <b:navBar  brand="WF Generations" brandHref="#" inverse="true" fixed="top" fluid="true">
             
             <b:navbarLinks pull="right">
-                <b:navLink value="Home" href="#"></b:navLink>
+                <b:navLink value="Welcome #{user.user.name}" href="#"></b:navLink>
+                <b:navLink value="Logout" href="#{user.logout()}"></b:navLink>
            </b:navbarLinks>
-            <h:form styleClass="navbar-form navbar-right">
-                <div class="form-group">
-                    <b:inputText placeholder="Search..." fieldSize="sm"/>
-                </div>
+            <h:form>
+               
+              
             </h:form>
         </b:navBar>
     </h:body>

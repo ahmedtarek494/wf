@@ -24,7 +24,7 @@ public interface UserService {
 	public int createUser( UserDto user) throws Exception;
 	
 	
-	public String loginService( String username,String Password) throws Exception;
+	public UserDto loginService( String username,String Password) throws Exception;
 	
 	public ArrayList<UserDto> getUsersByCenter( int CenterID) throws Exception;
 	

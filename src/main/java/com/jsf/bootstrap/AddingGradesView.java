@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -25,6 +27,7 @@ import com.wf.controllers.dto.UserDto;
 
 @ManagedBean
 @RequestScope
+@SessionScoped
 public class AddingGradesView  implements Serializable{
 
 	
@@ -108,7 +111,7 @@ public class AddingGradesView  implements Serializable{
 	private boolean dropdownbool=false;
 	private int centerid;
 	private int assessmentid;
-	private boolean gradestatus=true;
+	private boolean gradestatus=false;
 	
 	
 	
@@ -160,14 +163,19 @@ public class AddingGradesView  implements Serializable{
 		
 		System.out.println("ajax Student grade");
 			student=true;
-		 grade=false;
-		 
+		    gradestatus=false;
 	      try {
 	       System.out.println("beforeeeeee");
 	                       
 	     this.gradesdto= gradesservice.getGradesByCenterAndtype(centerid, assessmentid);
 	     
 			System.out.println("after");
+			for(GradesDto g:this.gradesdto)
+			{
+				System.out.println("grades1 :"+g.getUsergrade());
+
+				
+			}
 			
 	      }
 	      catch(Exception e)
@@ -184,10 +192,25 @@ public class AddingGradesView  implements Serializable{
 	System.out.println("grade in student handle: "+grade);
 	}
 	
-	public void changeGradeStatus()
+	public void changeGradeStatus() throws Exception
 	{
 		
-		System.out.println("change  grade status");
+		
+		System.out.println(" ajax state grades updated");
+		
+		
+		this.gradestatus=true;
+		
+		
+	}
+	
+	public void updatestudentgrade() throws Exception
+	{
+		
+		
+		gradesservice.updateStudentsGrades(this.gradesdto);
+		System.out.println("grades updated");
+		
 		
 		this.gradestatus=false;
 		

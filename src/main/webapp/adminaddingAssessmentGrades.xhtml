@@ -19,19 +19,21 @@
 function showDataContaner(data){
 			console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + JSON.stringify(data));
 			var ajaxloader = document.getElementById("ajaxloader");
-		
-			
 			if (data.status == 'begin'){
-			
 				console.log('begin');
+//				console.log($(	savebutton.style.display);
+				
 				ajaxloader.style.display= 'inline-block';
 				
-		
 			}else if (data.status == 'complete'){
 				ajaxloader.style.display = 'none';
 				console.log('complete');
+				
+				
 			
-			} else{
+			}
+			 else{
+				
 				console.log("else data.status : " + data.status );
 			}
 		}
@@ -63,7 +65,6 @@ function showDataContaner(data){
 			
 			<!-- two equal column -->
 <h:form id="form">        
-<h:panelGroup id="panelgroupbody">
 
 
                  
@@ -91,26 +92,28 @@ function showDataContaner(data){
                     
                     
                        <h:commandButton styleClass="btn btn-primary" id="search" type="submit" value="Search" style="width:17%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.AjaxStudentGrades()}" execute="center assessmenttype"  render="panelgroupbody" /> 
+                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.AjaxStudentGrades()}" execute="center assessmenttype"  render="table" /> 
                     </h:commandButton>
                     
-                    
+                    <h:commandButton styleClass="btn btn-primary" id="edit" type="submit" value="edit" style="width:17%">
+                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.changeGradeStatus()}" execute="center assessmenttype"  render="table" /> 
+                    </h:commandButton>
             </b:row>
-        <h:commandButton   styleClass="btn btn-primary" id="search1"   type="submit" value="Edit"   style="width:20%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.changeGradeStatus()}"   render="StudentForm table" /> 
-                    </h:commandButton>
+       
+       
+
+       
            <img id="ajaxloader"  src="131.gif" style="display: none;"/>
-            <h:panelGroup  id="StudentForm" rendered="#{addingGradesView.student and !addingGradesView.grade}" >
             
                 
                                 
-                           
+            
                             
            
                            
                        
             <b:row styleClass="table-responsive">
-                        <h:dataTable id="table"  styleClass="table table-striped" value="#{addingGradesView.gradesdto}" var="item" >
+                        <b:dataTable id="table"  styleClass="table table-striped" value="#{addingGradesView.gradesdto}" var="item" >
                             <h:column>
                                 <f:facet name="header"><h:outputText value="ID" /></f:facet>
                                 <h:outputText value="#{item.userid.id}" />
@@ -130,8 +133,8 @@ function showDataContaner(data){
                             </h:column>
                              <h:column>
                                 <f:facet name="header"><h:outputText value="Student Grade" /></f:facet>
-                                <h:outputText id="outp" value="#{item.usergrade}" rendered="#{addingGradesView.gradestatus}" />
-                                <h:inputText value="#{item.usergrade}" rendered="#{!addingGradesView.gradestatus}" />
+                             <h:outputText value="#{item.usergrade}"  rendered="#{!addingGradesView.gradestatus}" />
+                                <h:inputText value="#{item.usergrade}"  rendered="#{addingGradesView.gradestatus}" />
                             </h:column>
                             
                                <h:column>
@@ -141,11 +144,14 @@ function showDataContaner(data){
                              
                 
                             
-                        </h:dataTable>
+                        </b:dataTable>
                     </b:row>
-			</h:panelGroup>
+                    
+                      <h:commandButton   styleClass="btn btn-success" id="save" action="#{addingGradesView.updatestudentgrade()}"   type="submit" value="Save"   style="width:20%; ">
+                    </h:commandButton>   
 		
-</h:panelGroup>			
+
+
 
 			</h:form>
 			

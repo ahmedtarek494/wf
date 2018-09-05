@@ -68,7 +68,7 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 		Criteria criteria = getSession().createCriteria(Grades.class).add(Restrictions.eq("assessmenttype", type)).createCriteria("userid").add(Restrictions.eq("center", objcenter.getCenter()));
 	//	criteria.add(Restrictions.eq("userid", objcenter));
 	//	criteria.add(Restrictions.eq("assessmenttype", type));
-	
+		
 		return criteria.list();	}
 	public List<Grades> findGradeByUserID(User user) {
 		// TODO Auto-generated method stub
@@ -96,6 +96,25 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 		return criteria.list();
 
 		
+		
+	}
+
+	@Override
+	public void updateGrades(List<Grades> grades) {
+		// TODO Auto-generated method stub
+		for(Grades g: grades)
+		{
+			Query query = getSession().createQuery("update Grades set usergrade = :usergrade" +
+    				" where userid = :userid and assessmenttype=:assessmenttype");
+query.setParameter("usergrade", g.getUsergrade());
+query.setParameter("userid",g.getUser());
+query.setParameter("assessmenttype",g.getAssesmenttype());
+ query.executeUpdate();
+		System.out.println("query updated");
+			
+			  
+			 
+		}
 		
 	}
 

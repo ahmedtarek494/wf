@@ -1,22 +1,40 @@
 package com.jsf.bootstrap;
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.wf.bussines.services.UserService;
+import com.wf.controllers.dto.UserDto;
+import com.wf.utilities.SessionUtils;
 
 
 @RequestScope
 @ManagedBean
+@SessionScoped
 public class User {
 	private String userName;
 	
 	private String password;
 	
+	UserDto user=new UserDto();
+	
+	public UserDto getUser() {
+		return user;
+	}
+	public void setUser(UserDto user) {
+		this.user = user;
+	}
+
+
 	public static final String AUTH_KEY = "app.user.name";
 	@Autowired
 	UserService userservice;
@@ -29,6 +47,8 @@ public class User {
 		WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).
 	                                   getAutowireCapableBeanFactory().
 	                                   autowireBean(this);
+		
+		
 	    }
 	
 	  
@@ -67,11 +87,11 @@ public class User {
 	        .getSessionMap().get(AUTH_KEY) != null;
 	  }
 	
-	public String logout() {
-	    FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-	        .remove(AUTH_KEY);
-	    return null;
-	  }
+	  public String logout() {
+			HttpSession session = SessionUtils.getSession();
+			session.invalidate();
+			return "/";
+		}
 
 	public String login() throws Exception {
 		
@@ -81,12 +101,23 @@ public class User {
       try {
        System.out.println("beforeeeeee");
              
-		String nextPage= userservice.loginService(userName, password);
-		context.getExternalContext().redirect(nextPage);
+        user= userservice.loginService(userName, password);
+//		context.getExternalContext().redirect("studentHomePage.xhtml");
 		System.out.println("after");
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
-		        AUTH_KEY, userName);
-		return nextPage;
+		
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(true);	
+		session.setAttribute("username", userName);
+		int role=user.getIsstudent();
+		session.setAttribute("role", role);
+		
+		if(user.getIsstudent()==0)
+			context.getExternalContext().redirect("/faces/adminHomePage.xhtml");			
+		else	if(user.getIsstudent()==1)
+			context.getExternalContext().redirect("/HomePage");		
+		/*FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
+		        AUTH_KEY, userName);*/
+	return null;
       }
       catch(Exception e)
       {

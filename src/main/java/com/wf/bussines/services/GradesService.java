@@ -13,5 +13,6 @@ public interface GradesService {
 	public ArrayList<GradesToPStudentDto> getTopTenStudentGrades()throws Exception;
 
 	public ArrayList<GradesDto> getGradesByCenterAndtype ( int center ,int assessmentid)throws Exception;
+	public void updateStudentsGrades ( ArrayList<GradesDto> gradeslist) throws Exception;
 }
 	

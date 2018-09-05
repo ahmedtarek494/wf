@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 /**
  * 
  */
@@ -73,7 +76,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 
 
 	@Override
-	public String loginService(String username,String password) throws Exception {
+	public UserDto loginService(String username,String password) throws Exception {
 		// TODO Auto-generated method stub
 		UserDto userdto= new UserDto(); 
 		userdto.setUsername(username);
@@ -95,20 +98,16 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 			
 			userdto.setIsstudent(user.getIsstudent());
 			
-			if(user.getIsstudent()==0)
-				return "adminHomePage.xhtml";
-				
-			else	if(user.getIsstudent()==1)
-				return "test";
+
 			
 			
 			
-			
+			return userdto;
 			
 			
 			
 		}
-		return null;
+		
 			
 			
 		

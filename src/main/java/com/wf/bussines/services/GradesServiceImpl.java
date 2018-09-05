@@ -189,4 +189,29 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 		return Gradeslist;
 
 }
+
+	
+	@Override
+	public void updateStudentsGrades(ArrayList<GradesDto> gradeslist) throws Exception {
+		// TODO Auto-generated method stub
+		List<Grades> grades = new ArrayList<Grades>();
+		for(GradesDto g:gradeslist)
+		{
+			Grades tempgrade = new Grades();
+			
+			User user=new User();
+			user.setId(g.getUserid().getId());
+			AssessmentLookup assessmenttemp=new AssessmentLookup();
+			assessmenttemp.setId(g.getAssessmenttype().getId());
+			tempgrade.setUser(user);
+			tempgrade.setUsergrade(g.getUsergrade());
+			tempgrade.setAssesmenttype(assessmenttemp);
+			grades.add(tempgrade);
+
+			
+		}
+		System.out.println("Mapping finished");
+
+		gradesDao.updateGrades(grades);
+	}
 }
