@@ -7,8 +7,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Admin HomePage</title>
-	<meta name="author" content="Riccardo Massera"></meta>
+	<title>Student Home page</title>
+    <meta name="Wagih Fathala" content="Wagih Fathala provides website to communicate with student"></meta>
 
 
 <script type="text/javascript">
@@ -50,7 +50,7 @@ function showDataContaner(data){
 
 			<!-- admin sidebar layout -->
 			<ui:insert>
-				<ui:include src="adminSideBarLayout.xhtml"></ui:include>
+				<ui:include src="studentSideBarLayout.xhtml"></ui:include>
 			</ui:insert>
 			
 			
@@ -69,31 +69,103 @@ function showDataContaner(data){
 <h:form id="form">        
 <h:panelGroup id="panelgroupbody">
 
+<b:container fluid="true" contentDisabled="false">
+    <b:panel title="Top Ten Students" look="primary" >
 
-        <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{studentHomePageView.gradesToPStudentDtos}" var="top" rows="15">
+<b:carousel id="tiovivo" style="width:100%" interval="2500">
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3> Congratulation Number One</h3>
+      <h2 >1) #{studentHomePageView.gradesToPStudentDtos.get(0).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(0).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(0).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%;max-height: 400px;" />
+        <b:carouselCaption>
+        <h3>You are awesome</h3>
+      <h2>2) #{studentHomePageView.gradesToPStudentDtos.get(1).getUsername()}</h2>
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(1).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(1).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%;max-height: 400px;"/>
+        <b:carouselCaption>
+        <h3>Congratulation </h3>
+      <h2>3) #{studentHomePageView.gradesToPStudentDtos.get(2).getUsername()}</h2>
+      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(2).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(2).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%;max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>brilliant student</h3>
+      <h2>4) #{studentHomePageView.gradesToPStudentDtos.get(3).getUsername()}</h2>
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(3).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(3).getUsergrade()} point</p>    </b:carouselCaption>
+  </b:carouselItem>
+<b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>Congratulation</h3>
+      <h2>5) #{studentHomePageView.gradesToPStudentDtos.get(4).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(4).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(4).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>brilliant student</h3>
+      <h2>6) #{studentHomePageView.gradesToPStudentDtos.get(5).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(5).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(5).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>You are awesome</h3>
+      <h2>7) #{studentHomePageView.gradesToPStudentDtos.get(6).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(6).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(6).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>brilliant student</h3>
+      <h2>8) #{studentHomePageView.gradesToPStudentDtos.get(7).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(7).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(7).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>You are awesome</h3>
+      <h2>9) #{studentHomePageView.gradesToPStudentDtos.get(8).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(8).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(8).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+  <b:carouselItem>
+    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
+    <b:carouselCaption>
+    <h3>brilliant student</h3>
+      <h2>10) #{studentHomePageView.gradesToPStudentDtos.get(9).getUsername()}</h2>      
+      <p>#{studentHomePageView.gradesToPStudentDtos.get(9).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(9).getUsergrade()} point</p>
+    </b:carouselCaption>
+  </b:carouselItem>
+</b:carousel>
 
-                            <h:column>
-                                <f:facet name="header"><h:outputText value="#" /></f:facet>
-                                <h:outputText value="#{top.username}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"><h:outputText value="Header" /></f:facet>
-                                <h:outputText value="#{top.usergrade}" />
-                            </h:column>
+</b:panel>
+</b:container>
 
-                        </h:dataTable>
-                    </b:row>
-			
-			         
-	             
+
                      
             <h:panelGroup>
             
-    <h2>#{studentHomePageView.studentname}</h2>
+    <h1>#{studentHomePageView.studentname}</h1>
                         
 <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{studentHomePageView.gradeslistdto}" var="item" rows="15">
+                        <b:dataTable styleClass="table table-striped" value="#{studentHomePageView.gradeslistdto}" var="item" rows="15">
                             <h:column>
                                 <f:facet name="header"><h:outputText value="ID" /></f:facet>
                                 <h:outputText value="#{item.rownumber}" />
@@ -112,7 +184,7 @@ function showDataContaner(data){
                             </h:column>
 
                             
-                        </h:dataTable>
+                        </b:dataTable>
                     </b:row>
 			
 			</h:panelGroup>
@@ -130,6 +202,30 @@ function showDataContaner(data){
 	
 	
 	<style>
+.grade{
+position: relative;
+}
+h3{
+	font-weight: bold;
+    color : gold;
+    font-family : Times New Roman;
+    text-align: left;
+}
+
+	h2{
+	font-weight: bold;
+    color : gold;
+    font-family : Times New Roman;
+    text-align: left;
+	}
+	p{
+	font-weight: bold;
+    color : purple;
+    font-family : Times New Roman;
+    text-align: left;
+	font-size : 22px;
+	
+	}
 	                    .show-grid [class^="col-"] {
                         background-color: rgba(86, 61, 124, 0.15);
                         border: 1px solid rgba(86, 61, 124, 0.2);
@@ -137,6 +233,21 @@ function showDataContaner(data){
                         padding-top: 10px;
                         //margin-bottom: 15px;
                     }
+                    
+                            .placeholders {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .placeholders h4 {
+            margin-bottom: 0;
+        }
+        .placeholder {
+            margin-bottom: 20px;
+        }
+        .placeholder img {
+            border-radius: 50%;
+            display: inline-block;
+        }
 	</style>
 </h:body>
 </html>
