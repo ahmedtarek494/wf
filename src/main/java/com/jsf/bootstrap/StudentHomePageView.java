@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import com.wf.bussines.services.GradesService;
 import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.GradesDto;
 import com.wf.controllers.dto.GradesToPStudentDto;
+import com.wf.utilities.SessionUtils;
 
 @ManagedBean
 @RequestScope
@@ -91,7 +93,10 @@ public void setGradesToPStudentDtos(ArrayList<GradesToPStudentDto> gradesToPStud
 	                                   autowireBean(this);
 		
 		try {
-			gradeslistdto=gradesService.getGradesByUserId(1001);
+			
+			HttpSession session = SessionUtils.getSession();
+
+			gradeslistdto=gradesService.getGradesByUserId(Integer.parseInt(session.getAttribute("username").toString()));
 			studentname=gradeslistdto.get(0).getUserid().getUsername();
 			System.out.println("student name : "+gradeslistdto.get(0).getUserid().getUsername());
 		} catch (Exception e) {

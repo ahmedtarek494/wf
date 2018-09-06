@@ -1,7 +1,11 @@
 package com.jsf.bootstrap;
+
+
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -10,17 +14,23 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.wf.bussines.services.UserService;
 import com.wf.controllers.dto.UserDto;
 import com.wf.utilities.SessionUtils;
 
 
-@RequestScope
 @ManagedBean
-@SessionScoped
-public class User {
+@ApplicationScoped
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String userName;
 	
 	private String password;
@@ -36,8 +46,9 @@ public class User {
 
 
 	public static final String AUTH_KEY = "app.user.name";
+	
 	@Autowired
-	UserService userservice;
+	 UserService userservice;
 	
 	
 	  @PostConstruct
@@ -87,10 +98,15 @@ public class User {
 	        .getSessionMap().get(AUTH_KEY) != null;
 	  }
 	
-	  public String logout() {
+	  public void logout() {
 			HttpSession session = SessionUtils.getSession();
 			session.invalidate();
-			return "/";
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	public String login() throws Exception {
@@ -122,9 +138,10 @@ public class User {
       catch(Exception e)
       {
     	checkFaliureLoginException=true;  
-    	  System.out.println("exp "+ e.getMessage());
-    	  setFaliureLoginExeption(e.getMessage());
-    	  return "test";
+    System.out.println("exp");
+    	e.printStackTrace();
+    	  setFaliureLoginExeption("Service not available , Please try again later ");
+    	  return "/";
       }
 		
 	//	return "output";

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -26,8 +27,7 @@ import com.wf.controllers.dto.UserDto;
 
 
 @ManagedBean
-@RequestScope
-@SessionScoped
+@ApplicationScoped
 public class AddingGradesView  implements Serializable{
 
 	

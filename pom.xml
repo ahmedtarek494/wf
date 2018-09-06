@@ -68,6 +68,29 @@
     	<artifactId>spring-boot-starter-security</artifactId>
     </dependency>
     
+    
+    <!-- https://mvnrepository.com/artifact/com.sun.el/el-ri -->
+<dependency>
+    <groupId>com.sun.el</groupId>
+    <artifactId>el-ri</artifactId>
+    <version>1.0</version>
+</dependency>
+    
+    <!-- https://mvnrepository.com/artifact/javax.el/el-api -->
+<dependency>
+    <groupId>javax.el</groupId>
+    <artifactId>el-api</artifactId>
+    <version>1.1</version>
+</dependency>
+<dependency>
+	<groupId>org.mortbay.jasper</groupId>
+	<artifactId>apache-el</artifactId>
+	<version>8.5.24.2</version>
+</dependency>
+<!-- Thanks for using https://jar-download.com -->
+
+
+   
      <!-- Hibernate -->
      <dependency>
          <groupId>org.hibernate</groupId>

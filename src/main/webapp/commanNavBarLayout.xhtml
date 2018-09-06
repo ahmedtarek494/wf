@@ -6,9 +6,8 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>WFGeneration </title>
-        <meta name="Wagih Fathala" content="Wagih Fathala provides website to communicate with student"></meta>
-
+        <title>Dashboard </title>
+        <meta name="author" content="Riccardo Massera"></meta>
         
     </h:head>
     <h:body style="padding-top: 60px">
@@ -16,20 +15,15 @@
         <!--script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script-->
         <b:navBar  brand="WF Generations" brandHref="#" inverse="true" fixed="top" fluid="true">
             
-            <b:navbarLinks pull="right">
+            <b:navbarLinks >
                 <b:navLink value="Welcome #{user.user.name}" href="#"></b:navLink>
-                <b:navLink value="Logout" href="#{user.logout()}"></b:navLink>
            </b:navbarLinks>
-
-            <h:form>
-               
-              
-           
-            <h:form styleClass="navbar-form navbar-right">
-                <div class="form-group">
-                    <b:inputText placeholder="Search..." fieldSize="sm"/>
-                </div>
-            </h:form>
+            
         </b:navBar>
+        
+        <h:form styleClass="navbar-form navbar-right">
+               		<h:commandLink action="#{user.logout()}" value="Logout"></h:commandLink>
+            </h:form>
+        
     </h:body>
 </html>

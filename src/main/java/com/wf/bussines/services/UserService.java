@@ -16,7 +16,7 @@ import com.wf.entities.User;
 
 
 
-public interface UserService {
+public interface UserService  {
 
 	
 	

@@ -67,25 +67,25 @@ public class Application extends SpringBootServletInitializer implements Seriali
 	@Bean
     public DataSource dataSource() {
 		
-        /*DriverManagerDataSource dataSource = new DriverManagerDataSource();
+       DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
         dataSource.setUrl(env.getRequiredProperty("jdbc.url"));
         dataSource.setUsername(env.getRequiredProperty("jdbc.username"));
         dataSource.setPassword(env.getRequiredProperty("jdbc.password"));
         return dataSource;
-        */
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        
+       /* DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         
         dataSource.setUrl("jdbc:mysql://35.202.139.180:3306/wf_dev?autoReconnect=true&useSSL=false");
         dataSource.setUsername("root");
-        dataSource.setPassword("123456");
+        dataSource.setPassword("123456");*/
         
 //      dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 //      dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/wftest?autoReconnect=true&useSSL=false");
 //      dataSource.setUsername("root");
 //      dataSource.setPassword("123456");
-        return dataSource;
+       // return dataSource;
     }
 
     
