@@ -13,6 +13,7 @@ public class GradesToPStudentDto implements Serializable {
 	private float usergrade;
 	private String usercenter;
 	private String usergender;
+	private int userorder;
 	public String getUsername() {
 		return username;
 	}
@@ -36,6 +37,12 @@ public class GradesToPStudentDto implements Serializable {
 	}
 	public void setUsergender(String usergender) {
 		this.usergender = usergender;
+	}
+	public int getUserorder() {
+		return userorder;
+	}
+	public void setUserorder(int userorder) {
+		this.userorder = userorder;
 	}
 	
 	

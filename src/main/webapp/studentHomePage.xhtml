@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Student Home page</title>
@@ -63,97 +64,26 @@ function showDataContaner(data){
 			
 			
 			
-			
-			
 			<!-- two equal column -->
 <h:form id="form">        
 <h:panelGroup id="panelgroupbody">
 
 <b:container fluid="true" rendered="#{studentHomePageView.gradesToPStudentDtos !=null}" contentDisabled="false">
     <b:panel title="Top Ten Students" look="primary" >
-
 <b:carousel id="tiovivo" style="width:100%" interval="2500">
+<c:forEach items="#{studentHomePageView.gradesToPStudentDtos}" var="top" begin="0" end="9">
   <b:carouselItem>
     <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
     <b:carouselCaption>
-    <h3> Congratulation Number One</h3>
-      <h2 >1) #{studentHomePageView.gradesToPStudentDtos.get(0).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(0).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(0).getUsergrade()} point</p>
+    <h3>congratulation</h3>
+      <h2>#{top.userorder})#{top.username}</h2>      
+      <p>#{top.usercenter} : #{top.usergrade} point</p>
     </b:carouselCaption>
   </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%;max-height: 400px;" />
-        <b:carouselCaption>
-        <h3>You are awesome</h3>
-      <h2>2) #{studentHomePageView.gradesToPStudentDtos.get(1).getUsername()}</h2>
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(1).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(1).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%;max-height: 400px;"/>
-        <b:carouselCaption>
-        <h3>Congratulation </h3>
-      <h2>3) #{studentHomePageView.gradesToPStudentDtos.get(2).getUsername()}</h2>
-      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(2).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(2).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%;max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>Brilliant student</h3>
-      <h2>4) #{studentHomePageView.gradesToPStudentDtos.get(3).getUsername()}</h2>
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(3).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(3).getUsergrade()} point</p>    </b:carouselCaption>
-  </b:carouselItem>
-<b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>Congratulation</h3>
-      <h2>5) #{studentHomePageView.gradesToPStudentDtos.get(4).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(4).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(4).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>brilliant student</h3>
-      <h2>6) #{studentHomePageView.gradesToPStudentDtos.get(5).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(5).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(5).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>You are awesome</h3>
-      <h2>7) #{studentHomePageView.gradesToPStudentDtos.get(6).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(6).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(6).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>Brilliant student</h3>
-      <h2>8) #{studentHomePageView.gradesToPStudentDtos.get(7).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(7).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(7).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>You are awesome</h3>
-      <h2>9) #{studentHomePageView.gradesToPStudentDtos.get(8).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(8).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(8).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-  <b:carouselItem>
-    <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
-    <b:carouselCaption>
-    <h3>Brilliant student</h3>
-      <h2>10) #{studentHomePageView.gradesToPStudentDtos.get(9).getUsername()}</h2>      
-      <p>#{studentHomePageView.gradesToPStudentDtos.get(9).getUsercenter()} : #{studentHomePageView.gradesToPStudentDtos.get(9).getUsergrade()} point</p>
-    </b:carouselCaption>
-  </b:carouselItem>
-</b:carousel>
+</c:forEach>
+</b:carousel>			
+			
+
 
 </b:panel>
 </b:container>

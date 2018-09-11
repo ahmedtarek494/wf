@@ -27,7 +27,7 @@ import com.wf.controllers.dto.UserDto;
 
 
 @ManagedBean
-@ApplicationScoped
+@RequestScoped
 public class AddingGradesView  implements Serializable{
 
 	

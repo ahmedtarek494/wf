@@ -110,7 +110,7 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 	public ArrayList<GradesToPStudentDto> getTopTenStudentGrades() throws Exception {
 		// TODO Auto-generated method stub
 		ArrayList<GradesToPStudentDto> GradesTopStudentList=new ArrayList<GradesToPStudentDto>();
-
+		int count=0;
 		List<GradesStudentView> topStudentGrades=gradesTopStudentDao.getTopTenStudent();
 		System.out.println("size : "+topStudentGrades.size());
 		//System.out.println("size : "+topStudentGrades.get(0).getUsergrade());
@@ -119,6 +119,7 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 		else
 		{
 		System.out.println("innnnnnnnn");
+		
 			for(GradesStudentView g:topStudentGrades)
 			{
 				
@@ -131,6 +132,7 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 				gradesToPStudentDto.setUsergrade(g.getTotalusergrade());
 				gradesToPStudentDto.setUsercenter(g.getUserid().getCenter().getCentername());
 				gradesToPStudentDto.setUsergender(g.getUserid().getGender());
+				gradesToPStudentDto.setUserorder(++count);
 
 
 				GradesTopStudentList.add(gradesToPStudentDto);

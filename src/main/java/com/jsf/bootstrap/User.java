@@ -7,6 +7,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -24,7 +25,7 @@ import com.wf.utilities.SessionUtils;
 
 
 @ManagedBean
-@ApplicationScoped
+@RequestScoped
 public class User implements Serializable {
 	/**
 	 * 
