@@ -29,7 +29,7 @@ import org.primefaces.component.collector.Collector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("gradesservice")
 public class GradesServiceImpl extends ServicesManager implements GradesService,Serializable {
 
 	/**

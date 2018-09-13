@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.wf.bussines.services.AssessmentService;
@@ -24,10 +23,12 @@ import com.wf.controllers.dto.AssessmentDto;
 import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.GradesDto;
 import com.wf.controllers.dto.UserDto;
+import com.wf.utilities.SpringContext;
 
 
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
+@Component(value = "Grades")
 public class AddingGradesView  implements Serializable{
 
 	
@@ -92,18 +93,54 @@ public class AddingGradesView  implements Serializable{
 	
 	
 	@Autowired
-	UserService userservice;
+	private transient UserService userservice;
 	@Autowired
-	CenterService centerservice;
-	
-	@Autowired
-	AssessmentService assessmentservice;
+	private transient CenterService centerservice;
 	
 	@Autowired
-	GradesService gradesservice;
+	private transient AssessmentService assessmentservice;
+	
+	@Autowired
+	private transient GradesService gradesservice;
 	
 	
 	
+	public UserService getUserservice() {
+		if(userservice==null)
+		     userservice=(UserService) SpringContext.getApplicationContext().getBean("userservice");
+		return userservice;
+	}
+	public void setUserservice(UserService userservice) {
+		this.userservice = userservice;
+	}
+	public CenterService getCenterservice() {
+		if(centerservice==null)
+			centerservice=(CenterService) SpringContext.getApplicationContext().getBean("centerservice");
+
+		return centerservice;
+	}
+	public void setCenterservice(CenterService centerservice) {
+		this.centerservice = centerservice;
+	}
+	public AssessmentService getAssessmentservice() {
+		if(assessmentservice==null)
+			assessmentservice=(AssessmentService) SpringContext.getApplicationContext().getBean("assessmentservice");
+
+		return assessmentservice;
+	}
+	public void setAssessmentservice(AssessmentService assessmentservice) {
+		this.assessmentservice = assessmentservice;
+	}
+	public GradesService getGradesservice() {
+		if(gradesservice==null)
+			gradesservice=(GradesService) SpringContext.getApplicationContext().getBean("gradesservice");
+		
+		return gradesservice;
+	}
+	public void setGradesservice(GradesService gradesservice) {
+		this.gradesservice = gradesservice;
+	}
+
 	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
@@ -234,6 +271,7 @@ public class AddingGradesView  implements Serializable{
 		student=false;
 		System.out.println("handle ajax grade");
 	}
+	
 	
 	public void handleAjaxDropDown() {
 		dropdownbool=true;

@@ -92,7 +92,7 @@ public class Application extends SpringBootServletInitializer implements Seriali
 	 @Bean
 	    public ServletRegistrationBean servletRegistrationBean() {
 	        FacesServlet servlet = new FacesServlet();
-	        return new ServletRegistrationBean(servlet, "*.jsf");
+	        return new ServletRegistrationBean(servlet, "/faces/*");
 	    }
 	
 

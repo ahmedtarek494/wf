@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+
 
 /**
  * 
@@ -23,7 +22,7 @@ import com.wf.entities.Center;
 import com.wf.entities.User;
 
 
-@Service
+@Service("userservice")
 public class UserServiceImpl extends ServicesManager implements UserService,Serializable {
 
 	/* (non-Javadoc)

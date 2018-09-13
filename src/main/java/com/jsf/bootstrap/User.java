@@ -14,22 +14,31 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.wf.bussines.services.UserService;
 import com.wf.controllers.dto.UserDto;
 import com.wf.utilities.SessionUtils;
+import com.wf.utilities.SpringContext;
 
 
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
+@Component(value = "user")
+
 public class User implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8563412184846944419L;
+
+	/**
+	 * 
+	 */
 
 	private String userName;
 	
@@ -38,6 +47,8 @@ public class User implements Serializable {
 	UserDto user=new UserDto();
 	
 	public UserDto getUser() {
+		
+		
 		return user;
 	}
 	public void setUser(UserDto user) {
@@ -48,10 +59,18 @@ public class User implements Serializable {
 	public static final String AUTH_KEY = "app.user.name";
 	
 	@Autowired
-	 UserService userservice;
+	private transient UserService userservice;
 	
 	
-	  @PostConstruct
+	  public UserService getUserservice() {
+		  if(userservice==null)
+	     userservice=(UserService) SpringContext.getApplicationContext().getBean("userservice");
+		return userservice;
+	}
+	public void setUserservice(UserService userservice) {
+		this.userservice = userservice;
+	}
+	@PostConstruct
 	    private void init() {
 	    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	        ServletContext servletContext = (ServletContext) externalContext.getContext();
@@ -117,7 +136,7 @@ public class User implements Serializable {
       try {
        System.out.println("beforeeeeee");
              
-        user= userservice.loginService(userName, password);
+        user= getUserservice().loginService(userName, password);
 //		context.getExternalContext().redirect("studentHomePage.xhtml");
 		System.out.println("after");
 		

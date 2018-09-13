@@ -17,7 +17,7 @@ import com.wf.entities.AssessmentLookup;
 import com.wf.entities.Grades;
 import com.wf.entities.User;
 
-@Service
+@Service("assessmentservice")
 public class AssessessmentServiceImpl extends ServicesManager implements AssessmentService,Serializable {
 
 	private static final long serialVersionUID = 1L;

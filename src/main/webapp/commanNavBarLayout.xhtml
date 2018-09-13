@@ -19,11 +19,12 @@
                 <b:navLink value="Welcome #{user.user.name}" href="#"></b:navLink>
            </b:navbarLinks>
             
-        </b:navBar>
-        
-        <h:form styleClass="navbar-form navbar-right">
+            <h:form styleClass="navbar-form navbar-right">
                		<h:commandLink action="#{user.logout()}" value="Logout"></h:commandLink>
             </h:form>
+        </b:navBar>
+        
+        
         
     </h:body>
 </html>

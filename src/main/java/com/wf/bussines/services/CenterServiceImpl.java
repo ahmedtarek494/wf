@@ -12,7 +12,7 @@ import com.wf.controllers.dto.CenterDto;
 import com.wf.entities.Center;
 
 
-@Service
+@Service("centerservice")
 public class CenterServiceImpl extends ServicesManager implements CenterService,Serializable {
 
 	
