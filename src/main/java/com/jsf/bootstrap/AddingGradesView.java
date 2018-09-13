@@ -29,6 +29,7 @@ import com.wf.utilities.SpringContext;
 @ManagedBean
 @SessionScoped
 @Component(value = "Grades")
+
 public class AddingGradesView  implements Serializable{
 
 	

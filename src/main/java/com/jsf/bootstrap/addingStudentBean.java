@@ -38,6 +38,7 @@ public class addingStudentBean {
 	String fullName;
 	String gender;
 	String mobileNumber;
+	String parentnumber;
 	int Center;
 	
 	String successfulMessage;
@@ -98,7 +99,15 @@ public class addingStudentBean {
 	public void setCenter(int center) {
 		Center = center;
 	}
+	
+	
 
+	public String getParentnumber() {
+		return parentnumber;
+	}
+	public void setParentnumber(String parentnumber) {
+		this.parentnumber = parentnumber;
+	}
 	public void addStudent() throws Exception {
 	
 	//	FacesContext context=FacesContext.getCurrentInstance();	
@@ -107,6 +116,7 @@ public class addingStudentBean {
 	userdto.setName(this.fullName);
 	userdto.setGender(this.gender);
 	userdto.setMobilenumber(this.mobileNumber);
+	userdto.setParentnumber(this.parentnumber);
 	CenterDto c1=new CenterDto();
 	c1.setId(this.Center);
 	//c1.setCentername("basamel");
@@ -128,7 +138,7 @@ public class addingStudentBean {
 	setFaliureMessage("Warning! Try again to add student");		
 	}
 	}
-	
+
 	
 	
 }

@@ -36,6 +36,8 @@ public class User implements Serializable {
 	@Column(name="mobilenumber")
 	private String mobilenumber;
 	
+	@Column(name="parentnumber")
+	private String parentnumber;
 	
 	@Column(name="gender")
 	private String gender;
@@ -51,6 +53,16 @@ public class User implements Serializable {
 	
 	public String getUsername() {
 		return username;
+	}
+
+
+	public String getParentnumber() {
+		return parentnumber;
+	}
+
+
+	public void setParentnumber(String parentnumber) {
+		this.parentnumber = parentnumber;
 	}
 
 

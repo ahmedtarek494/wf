@@ -56,6 +56,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 		c1.setId(user.getCenter().getId());
 		u1.setCenter(c1);
 		u1.setMobilenumber(user.getMobilenumber());
+		u1.setParentnumber(user.getParentnumber());
 		//u1.setUsername(user.getName());
 		//u1.setPassword("wfmath"+userDao.addUser(u1));
 		System.out.println("before 1");
