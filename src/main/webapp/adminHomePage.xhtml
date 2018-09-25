@@ -82,7 +82,7 @@ function showDataContaner(data){
                  <f:ajax onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(4)}"  render="panelgroupbody"  /> 
 
                     </h:commandButton>
-                         <h:commandButton styleClass="btn btn-info" id="haramstudents" type="submit" value="Basmala Haram" style="width:17%">
+                         <h:commandButton styleClass="btn btn-warning" id="haramstudents" type="submit" value="Basmala Haram" style="width:17%">
                  <f:ajax onevent="showDataContaner" event="click"  listener="#{adminHomePageView.handleAjaxStudent(5)}"  render="panelgroupbody"  /> 
 
                     </h:commandButton>
@@ -115,6 +115,10 @@ function showDataContaner(data){
                                 <f:facet name="header"><h:outputText value="Mobile" /></f:facet>
                                 <h:outputText value="#{item.mobilenumber}" />
                             </h:column>
+                            <h:column>
+                                <f:facet name="header"><h:outputText value="Parent number" /></f:facet>
+                                <h:outputText value="#{item.parentnumber}" />
+                            </h:column>                            
                              <h:column>
                                 <f:facet name="header"><h:outputText value="UserName" /></f:facet>
                                 <h:outputText value="#{item.username}" />
@@ -124,6 +128,12 @@ function showDataContaner(data){
                                 <f:facet name="header"><h:outputText value="Password" /></f:facet>
                                 <h:outputText value="#{item.password}" />
                             </h:column>
+                               <h:column>
+                                <f:facet name="header"><h:outputText value="Edit" /></f:facet>
+                                <h:commandButton styleClass="btn btn-primary" value="Edit" action="#{adminHomePageView.directEditpage(item)}"/>
+
+								                                
+                            </h:column>                            
                             
                         </b:dataTable>
                     </b:row>

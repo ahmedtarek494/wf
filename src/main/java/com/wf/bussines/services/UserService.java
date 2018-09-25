@@ -28,4 +28,8 @@ public interface UserService  {
 	
 	public ArrayList<UserDto> getUsersByCenter( int CenterID) throws Exception;
 	
+	public void editStudentInfo(UserDto user) throws Exception;
+	
+	public void deleteStudentInfo(UserDto user) throws Exception;
+	
 }
