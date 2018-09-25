@@ -87,6 +87,21 @@ public class UserDaoimpl extends AbstractDao implements UserDao,Serializable {
 		return criteria.list();
 	}
 
+	@Override
+	public void editStudentInformation(User user) {
+		// TODO Auto-generated method stub
+	
+		getSession().update(user);
+		
+	}
+
+	@Override
+	public void deleteStudentInformation(User user) {
+		// TODO Auto-generated method stub
+		getSession().delete(user);
+	}
+
+
 
 		
 }

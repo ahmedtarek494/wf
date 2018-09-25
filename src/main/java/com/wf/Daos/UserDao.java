@@ -25,6 +25,10 @@ public interface UserDao {
 	    public List <User> findAllByCenter(Center center);
 	    
 	    public User findUserByUsernameAndPass(String username,String Password);
+	    
+	    public void editStudentInformation(User user);
+	    
+	    public void deleteStudentInformation(User user);
 }
 
 

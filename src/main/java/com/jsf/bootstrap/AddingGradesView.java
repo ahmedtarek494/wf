@@ -35,7 +35,11 @@ public class AddingGradesView  implements Serializable{
 	
 	
 	
-	 @PostConstruct
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -743015932900256091L;
+	@PostConstruct
 	    private void init() {
 	    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	        ServletContext servletContext = (ServletContext) externalContext.getContext();

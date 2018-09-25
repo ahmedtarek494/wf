@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -21,6 +21,7 @@ import com.wf.controllers.dto.UserDto;
 import com.wf.entities.Center;
 import com.wf.entities.User;
 import com.wf.exceptions.AuthenticationException;
+import com.wf.utilities.SessionUtils;
 
 
 @Service("userservice")
@@ -139,6 +140,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 				userdto.setName(u.getName());
 				userdto.setGender(u.getGender());
 				userdto.setMobilenumber(u.getMobilenumber());
+				userdto.setParentnumber(u.getParentnumber());
 				Center center=u.getCenter();
 				CenterDto centerdto=new CenterDto(center.getId(), center.getCentername());
 				
@@ -153,6 +155,69 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 			return userlist;
 			
 		}
+	}
+
+
+
+
+	@Override
+	public void editStudentInfo(UserDto user) throws Exception {
+		// TODO Auto-generated method stub
+		User user1=new User();
+		user1.setId(user.getId());
+		user1.setName(user.getName());
+		user1.setGender(user.getGender());
+		user1.setMobilenumber(user.getMobilenumber());
+		user1.setParentnumber(user.getParentnumber());
+		Center c1=new Center();
+		c1.setId(user.getCenter().getId());
+		c1.setCentername(user.getCenter().getCentername());
+		user1.setCenter(c1);
+		//user1.setUsername(user.getUsername());
+		user1.setPassword(user.getPassword());
+		user1.setIsstudent(1);
+		
+		try {
+			userDao.editStudentInformation(user1);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
+
+
+
+
+	@Override
+	public void deleteStudentInfo(UserDto user) throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = SessionUtils.getSession();
+		
+		user=(UserDto) session.getAttribute("userDTO");
+		//userdto.getId();
+		User user1=new User();
+		user1.setId(user.getId());
+		user1.setName(user.getName());
+		user1.setGender(user.getGender());
+		user1.setMobilenumber(user.getMobilenumber());
+		user1.setParentnumber(user.getParentnumber());
+		Center c1=new Center();
+		c1.setId(user.getCenter().getId());
+		c1.setCentername(user.getCenter().getCentername());
+		user1.setCenter(c1);
+		user1.setUsername(user.getUsername());
+		user1.setPassword(user.getPassword());
+		user1.setIsstudent(1);
+		
+		try {
+			userDao.deleteStudentInformation(user1);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 	}
 		
 
