@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -15,14 +13,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.RequestScope;
-import org.springframework.web.context.annotation.SessionScope;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.wf.bussines.services.UserService;
 import com.wf.controllers.dto.UserDto;
+import com.wf.exceptions.AuthenticationException;
 import com.wf.utilities.SessionUtils;
 import com.wf.utilities.SpringContext;
 
@@ -155,6 +151,14 @@ public class User implements Serializable {
 		/*FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
 		        AUTH_KEY, userName);*/
 	return null;
+      }
+      catch (AuthenticationException e)
+      {
+    		checkFaliureLoginException=true;  
+    	    System.out.println("exp");
+    	    	e.printStackTrace();
+    	    	  setFaliureLoginExeption(e.getMessage());
+    	    	  return "/";
       }
       catch(Exception e)
       {

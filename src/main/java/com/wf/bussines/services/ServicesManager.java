@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wf.Daos.UserDao;
+import com.wf.exceptions.ExceptionHandler;
 
 
 
@@ -23,7 +24,7 @@ import com.wf.Daos.UserDao;
  * @author ahmed tarek
  *
  */
-@Transactional(rollbackFor = Exception.class)
+@Transactional(rollbackFor = ExceptionHandler.class)
 public abstract class ServicesManager implements Serializable {
 	
 

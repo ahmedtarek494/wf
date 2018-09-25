@@ -20,6 +20,7 @@ import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.UserDto;
 import com.wf.entities.Center;
 import com.wf.entities.User;
+import com.wf.exceptions.AuthenticationException;
 
 
 @Service("userservice")
@@ -84,7 +85,7 @@ public class UserServiceImpl extends ServicesManager implements UserService,Seri
 		User user= userDao.findUserByUsernameAndPass(username,password);
 		
 		if(user==null)
-			throw new Exception("Incorrect Username or Password");
+			throw new AuthenticationException("Incorrect Username or Password");
 		else
 		{
 			userdto.setId(user.getId());

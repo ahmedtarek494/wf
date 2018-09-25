@@ -44,7 +44,7 @@ public class AddingGradesView  implements Serializable{
 	                                   autowireBean(this);
 		
 		try {
-			assessmentdto=assessmentservice.findAllAssessments();
+			assessmentdto=getAssessmentservice().findAllAssessments();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -142,7 +142,6 @@ public class AddingGradesView  implements Serializable{
 		this.gradesservice = gradesservice;
 	}
 
-	private static final long serialVersionUID = 1L;
 	private boolean student=false;
 	private boolean grade=false;
 	private ArrayList<UserDto> userslist;
@@ -205,7 +204,7 @@ public class AddingGradesView  implements Serializable{
 	      try {
 	       System.out.println("beforeeeeee");
 	                       
-	     this.gradesdto= gradesservice.getGradesByCenterAndtype(centerid, assessmentid);
+	     this.gradesdto= getGradesservice().getGradesByCenterAndtype(centerid, assessmentid);
 	     
 			System.out.println("after");
 			for(GradesDto g:this.gradesdto)
@@ -246,7 +245,7 @@ public class AddingGradesView  implements Serializable{
 	{
 		
 		
-		gradesservice.updateStudentsGrades(this.gradesdto);
+		getGradesservice().updateStudentsGrades(this.gradesdto);
 		System.out.println("grades updated");
 		
 		
@@ -280,7 +279,7 @@ public class AddingGradesView  implements Serializable{
 		{
 			
 		
-		centerlistdto=centerservice.getAllCenters();
+		centerlistdto=getCenterservice().getAllCenters();
 		}
 		  catch(Exception e)
 	      {

@@ -29,6 +29,8 @@ public abstract class AbstractDao implements Serializable{
 	/**
 	 * 
 	 */
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	protected final Logger logDao = LoggerFactory.getLogger(AbstractDao.class);

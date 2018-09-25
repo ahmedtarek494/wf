@@ -9,35 +9,10 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Student Home page</title>
-    <meta name="Wagih Fathala" content="Wagih Fathala provides website to communicate with student"></meta>
-
-
-<script type="text/javascript">
+    <meta name="Wagih Fathala" content="Wagih Fathala provides website to communicate with students"></meta>
 
 
 
-
-function showDataContaner(data){
-			console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + JSON.stringify(data));
-			var ajaxloader = document.getElementById("ajaxloader");
-		
-			
-			if (data.status == 'begin'){
-			
-				console.log('begin');
-				ajaxloader.style.display= 'inline-block';
-				
-		
-			}else if (data.status == 'complete'){
-				ajaxloader.style.display = 'none';
-				console.log('complete');
-			
-			} else{
-				console.log("else data.status : " + data.status );
-			}
-		}
-
-</script>
 </h:head>
 <h:body style="padding-top: 60px">
 
@@ -75,7 +50,7 @@ function showDataContaner(data){
   <b:carouselItem>
     <img src="trophy.jpg" alt="Valladolid" style="width:100%; max-height: 400px;" />
     <b:carouselCaption>
-    <h3>congratulation</h3>
+    <h3>Congratulation</h3>
       <h2>#{top.userorder})#{top.username}</h2>      
       <p>#{top.usercenter} : #{top.usergrade} point</p>
     </b:carouselCaption>

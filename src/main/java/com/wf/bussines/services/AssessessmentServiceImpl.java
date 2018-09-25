@@ -44,16 +44,10 @@ public class AssessessmentServiceImpl extends ServicesManager implements Assessm
 		
 		assessment.setId(assessmentid);
 		
-		///////////////////////////
-		List<User> user=userDao.findAll();
-		
-		
-		Grades grade=new Grades();
-		grade.setAssesmenttype(assessment);;
 		
 		System.out.println("Assessment created");
 		System.out.println("******* Start create Assessment grades for students");
-	gradeDao.Creategradeform( user,grade);
+		gradeDao.Creategradeform(assessment);
 		System.out.println("finished ");
 		
 	}

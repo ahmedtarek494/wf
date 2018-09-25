@@ -70,7 +70,7 @@ border: 1px solid #ff0033;
 			<h:form id="myform">
 			              <b:alert severity="success"  value="#{addingStudentBean.successfulMessage}" rendered="#{addingStudentBean.checkValue}"></b:alert>
               <b:alert severity="danger"  value="#{addingStudentBean.faliureMessage}" rendered="#{addingStudentBean.checkValueFailure}"></b:alert>
-			
+		
 			<h:message styleClass="error" for="fullname"></h:message>
 			  <b:inputText id="fullname" placeholder="Full Name"  label="Student Full Name" value="#{addingStudentBean.fullName}" required="true" requiredMessage="Enter  User Name"/>
 			  

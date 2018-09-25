@@ -11,12 +11,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.wf.bussines.services.GradesService;
-import com.wf.controllers.dto.CenterDto;
 import com.wf.controllers.dto.GradesDto;
 import com.wf.controllers.dto.GradesToPStudentDto;
 import com.wf.utilities.SessionUtils;
@@ -24,6 +22,11 @@ import com.wf.utilities.SessionUtils;
 @ManagedBean
 @RequestScope
 public class StudentHomePageView implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6119929375319256242L;
 
 	@Autowired
 	GradesService gradesService;
