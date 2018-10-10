@@ -25,5 +25,5 @@ public interface GradesDao {
 	
 	public List<Grades> getTopTenStudent();
 	
-	public void updateGrades(List<Grades> grades);
+	public int updateGrades(List<Grades> grades);
 }

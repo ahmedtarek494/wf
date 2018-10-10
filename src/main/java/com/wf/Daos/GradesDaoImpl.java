@@ -80,8 +80,9 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 	}
 
 	@Override
-	public void updateGrades(List<Grades> grades) {
+	public int updateGrades(List<Grades> grades) {
 		// TODO Auto-generated method stub
+		int row=0;
 		for(Grades g: grades)
 		{
 			Query query = getSession().createQuery("update Grades set usergrade = :usergrade" +
@@ -89,13 +90,13 @@ public class GradesDaoImpl extends AbstractDao implements GradesDao,Serializable
 query.setParameter("usergrade", g.getUsergrade());
 query.setParameter("userid",g.getUser());
 query.setParameter("assessmenttype",g.getAssesmenttype());
- query.executeUpdate();
+  row=query.executeUpdate();
 		System.out.println("query updated");
 			
 			  
 			 
 		}
-		
+		return row;
 	}
 
 }

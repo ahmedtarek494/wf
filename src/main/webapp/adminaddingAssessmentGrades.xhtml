@@ -91,13 +91,10 @@ function showDataContaner(data){
         </b:selectOneMenu>
                     
                     
-                       <h:commandButton styleClass="btn btn-primary" id="search" type="submit" value="Search" style="width:17%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.AjaxStudentGrades()}" execute="center assessmenttype"  render="table" /> 
+                       <h:commandButton styleClass="btn btn-primary" id="search" type="submit" action="#{addingGradesView.AjaxStudentGrades()}" value="Search" style="width:17%">
                     </h:commandButton>
                     
-                    <h:commandButton styleClass="btn btn-primary" id="edit" type="submit" value="edit" style="width:17%">
-                  <f:ajax  onevent="showDataContaner" event="click"  listener="#{addingGradesView.changeGradeStatus()}" execute="center assessmenttype"  render="table" /> 
-                    </h:commandButton>
+                  
             </b:row>
        
        
@@ -133,8 +130,7 @@ function showDataContaner(data){
                             </h:column>
                              <h:column>
                                 <f:facet name="header"><h:outputText value="Student Grade" /></f:facet>
-                             <h:outputText value="#{item.usergrade}"  rendered="#{!addingGradesView.gradestatus}" />
-                                <h:inputText value="#{item.usergrade}"  rendered="#{addingGradesView.gradestatus}" />
+                                <h:inputText value="#{item.usergrade}"   />
                             </h:column>
                             
                                <h:column>

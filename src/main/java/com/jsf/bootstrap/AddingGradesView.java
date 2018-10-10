@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -13,6 +13,7 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.wf.bussines.services.AssessmentService;
@@ -25,10 +26,9 @@ import com.wf.controllers.dto.GradesDto;
 import com.wf.controllers.dto.UserDto;
 import com.wf.utilities.SpringContext;
 
-
+@Component("grade")
 @ManagedBean
 @SessionScoped
-@Component(value = "Grades")
 
 public class AddingGradesView  implements Serializable{
 
@@ -39,7 +39,7 @@ public class AddingGradesView  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -743015932900256091L;
-	@PostConstruct
+/*	@PostConstruct
 	    private void init() {
 	    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	        ServletContext servletContext = (ServletContext) externalContext.getContext();
@@ -53,8 +53,21 @@ public class AddingGradesView  implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
+	
+	
+	public AddingGradesView() {
 		
+		try {
+			assessmentdto=getAssessmentservice().findAllAssessments();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	
+	
 	    }
 	
 	/**
@@ -107,9 +120,15 @@ public class AddingGradesView  implements Serializable{
 	
 	@Autowired
 	private transient GradesService gradesservice;
+	/*@ManagedProperty(value="#{gradesServiceImpl}")
+	GradesService gradeservice;*/
+	/*
+	public GradesService getGradeservice() {
 	
-	
-	
+		return gradeservice;	}
+	public void setGradeservice(GradesService gradeservice) {
+		this.gradeservice = gradeservice;
+	}*/
 	public UserService getUserservice() {
 		if(userservice==null)
 		     userservice=(UserService) SpringContext.getApplicationContext().getBean("userservice");
@@ -138,7 +157,7 @@ public class AddingGradesView  implements Serializable{
 	}
 	public GradesService getGradesservice() {
 		if(gradesservice==null)
-			gradesservice=(GradesService) SpringContext.getApplicationContext().getBean("gradesservice");
+			gradesservice=(GradesService) SpringContext.getApplicationContext().getBean("gradesServiceImpl");
 		
 		return gradesservice;
 	}
@@ -203,20 +222,13 @@ public class AddingGradesView  implements Serializable{
 	
 		
 		System.out.println("ajax Student grade");
-			student=true;
-		    gradestatus=false;
 	      try {
 	       System.out.println("beforeeeeee");
 	                       
-	     this.gradesdto= getGradesservice().getGradesByCenterAndtype(centerid, assessmentid);
+	       setGradesdto(getGradesservice().getGradesByCenterAndtype(centerid, assessmentid));
 	     
 			System.out.println("after");
-			for(GradesDto g:this.gradesdto)
-			{
-				System.out.println("grades1 :"+g.getUsergrade());
-
-				
-			}
+		
 			
 	      }
 	      catch(Exception e)
@@ -245,16 +257,21 @@ public class AddingGradesView  implements Serializable{
 		
 	}
 	
-	public void updatestudentgrade() throws Exception
+	public void updatestudentgrade() 
 	{
 		
+	int rowNo=0;
 		
-		getGradesservice().updateStudentsGrades(this.gradesdto);
-		System.out.println("grades updated");
+		try {
+	 rowNo=		getGradesservice().updateStudentsGrades(getGradesdto());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("grades updated, no of rows affected : "+rowNo);
 		
 		
 		this.gradestatus=false;
-		
 		
 	}
 	

@@ -29,7 +29,7 @@ import org.primefaces.component.collector.Collector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("gradesservice")
+@Service
 public class GradesServiceImpl extends ServicesManager implements GradesService,Serializable {
 
 	/**
@@ -41,6 +41,7 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 	
 	@Autowired
 	private GradesTopStudentDao gradesTopStudentDao;
+	
 	
 	@Override
 	public ArrayList<GradesDto> getGradesByUserId(int sessionId) throws Exception {
@@ -70,6 +71,7 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 				GradesDto gradesDto=new GradesDto();
 				System.out.println("usergrade : "+g.getUsergrade());
 				gradesDto.setUsergrade(g.getUsergrade());
+				
 				
 				
 				
@@ -216,26 +218,29 @@ public class GradesServiceImpl extends ServicesManager implements GradesService,
 
 	
 	@Override
-	public void updateStudentsGrades(ArrayList<GradesDto> gradeslist) throws Exception {
+	public int updateStudentsGrades(ArrayList<GradesDto> gradeslist) throws Exception {
 		// TODO Auto-generated method stub
-		List<Grades> grades = new ArrayList<Grades>();
-		for(GradesDto g:gradeslist)
-		{
+		ArrayList<Grades> grades = new ArrayList<Grades>();
+		int affectedrows=0;
+		//for(GradesDto g:gradeslist)
+	//	{
 			Grades tempgrade = new Grades();
 			
 			User user=new User();
-			user.setId(g.getUserid().getId());
+			user.setId(gradeslist.get(0).getUserid().getId());
 			AssessmentLookup assessmenttemp=new AssessmentLookup();
-			assessmenttemp.setId(g.getAssessmenttype().getId());
+			assessmenttemp.setId(gradeslist.get(0).getAssessmenttype().getId());
 			tempgrade.setUser(user);
-			tempgrade.setUsergrade(g.getUsergrade());
+			tempgrade.setUsergrade(gradeslist.get(0).getUsergrade());
 			tempgrade.setAssesmenttype(assessmenttemp);
 			grades.add(tempgrade);
 
 			
-		}
+		//}
 		System.out.println("Mapping finished");
 
-		gradesDao.updateGrades(grades);
+	 affectedrows =	gradesDao.updateGrades(grades);
+	 return  affectedrows;
 	}
+	
 }
